@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
 		05EB95332094665400A5D76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95322094665400A5D76C /* Assets.xcassets */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
+		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
 		05EB952D2094665400A5D76C /* flowcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flowcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EB95302094665400A5D76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05EB95322094665400A5D76C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,11 +54,13 @@
 		05EB952F2094665400A5D76C /* flowcus */ = {
 			isa = PBXGroup;
 			children = (
+				056006A7209524950005A4BD /* ding.m4a */,
 				05EB95302094665400A5D76C /* AppDelegate.swift */,
 				05EB95322094665400A5D76C /* Assets.xcassets */,
 				05EB95342094665400A5D76C /* MainMenu.xib */,
 				05EB95372094665400A5D76C /* Info.plist */,
 				05EB95382094665400A5D76C /* flowcus.entitlements */,
+				056006A520950F520005A4BD /* README.md */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -120,6 +125,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05EB95332094665400A5D76C /* Assets.xcassets in Resources */,
+				056006A8209524950005A4BD /* ding.m4a in Resources */,
 				05EB95362094665400A5D76C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
