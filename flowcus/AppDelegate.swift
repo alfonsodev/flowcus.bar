@@ -10,7 +10,7 @@ import Cocoa
 import AVFoundation
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate, CAMediaTiming {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
     var player: AVAudioPlayer?
     var menu = NSMenu()
@@ -287,7 +287,4 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
      func windowWillEnterFullScreen(_ notification: Notification) {
         print("full screen.....!!")
     }
-    
-    
-
 }
