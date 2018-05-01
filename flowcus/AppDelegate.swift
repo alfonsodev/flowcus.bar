@@ -10,11 +10,12 @@ import Cocoa
 import AVFoundation
 
 @NSApplicationMain
-class AppDelegate: NSObject, NSApplicationDelegate {
+class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate, CAMediaTiming {
     @IBOutlet weak var window: NSWindow!
     var player: AVAudioPlayer?
     var menu = NSMenu()
     let colorMenu = NSMenu()
+    let soundMenu = NSMenu()
     var timeMenuItems = [NSMenuItem]()
     var timerInterval = 0
     var color = NSColor.red
@@ -26,6 +27,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         view.layer?.cornerRadius = 0
         return view
     }()
+    var sound = NSSound(named: NSSound.Name(rawValue: "Purr"))
     
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
 
@@ -56,29 +58,55 @@ class AppDelegate: NSObject, NSApplicationDelegate {
     @objc func restart() {
         v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
         v.layer?.backgroundColor = color.cgColor
-        
-        DispatchQueue.main.async {
-
+         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
                 context.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
                 context.duration = TimeInterval(self.timerInterval)
                 context.allowsImplicitAnimation = true
+                // context.timingFunction = CAMediaTimingFunction
                 self.v.frame = NSRect(x: 0, y: 0, width: (self.window.contentView?.bounds.width)!, height: 3)
             }, completionHandler: {
-                NSSound(named: NSSound.Name(rawValue: "ding"))?.play()
+                self.showNotification()
+                self.sound?.volume = 0.5
+                self.sound?.play()
             })
 
         }
     }
+    
+    func showNotification() -> Void {
+        let notification = NSUserNotification()
+        notification.title = "Test."
+        notification.subtitle = "Sub Test."
+        // notification.soundName = NSUserNotificationDefaultSoundName
+        NSUserNotificationCenter.default.delegate = self as NSUserNotificationCenterDelegate
+        NSUserNotificationCenter.default.deliver(notification)
+    }
+    
+    func userNotificationCenter(_ center: NSUserNotificationCenter,
+                                shouldPresent notification: NSUserNotification) -> Bool {
+        return true
+    }
 
+
+    @objc func changeSound(sender: Any) {
+        let selectedItem = (sender as! NSMenuItem)
+        
+        let selectedSound = NSSound(named: NSSound.Name(rawValue: selectedItem.title))
+        selectedSound?.volume = 0.5
+        selectedSound?.play()
+        sound = selectedSound
+        for (_, value) in soundMenu.items.enumerated() {
+            value.state = .off
+        }
+        
+        selectedItem.state = .on
+    }
+    
     @objc func changeColor(sender: Any) {
         print("changing color ... ")
         let selectedColorTitle = (sender as! NSMenuItem).title
-        if #available(OSX 10.13, *) {
-            color = NSColor(named: NSColor.Name(rawValue: selectedColorTitle.lowercased()))!
-            return
-        }
-        
+    
         for (_, value) in colorMenu.items.enumerated() {
             value.state = .off
         }
@@ -180,23 +208,15 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         menu.addItem(NSMenuItem(title: "Color", action: #selector(setMinutes), keyEquivalent: "c"))
         
         // setup volume
-        let slider = NSSlider(value: 5, minValue: 0, maxValue: 10, target: self, action: #selector(changeVolume(sender:)))
-        slider.numberOfTickMarks = 10
-//         slider.tickMarkValue(at: 0)
-//        slider.tickMarkValue(at: 5)
-//        slider.tickMarkValue(at: 10)
-//        slider.tickMarkValue(at: 0)
-//        slider.tickMarkValue(at: 10)
-        slider.allowsTickMarkValuesOnly = true
+//        let slider = NSSlider(value: 5, minValue: 0, maxValue: 10, target: self, action: #selector(changeVolume(sender:)))
+//        slider.numberOfTickMarks = 10
+//        slider.allowsTickMarkValuesOnly = true
+//        let volItem = NSMenuItem()
+//        volItem.view = slider
 //
-        let volItem = NSMenuItem()
-        volItem.view = slider
+//        menu.addItem(volItem)
         
-        menu.addItem(volItem)
-        
-        // volItem.view?.translatesAutoresizingMaskIntoConstraints = false
-        // volItem.view?.leftAnchor.constraint(equalTo: , constant: <#T##CGFloat#>)
-        // volItem.view?.margins = NSEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        setupSoundMenu()
         
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Flowcus v1.0.2", action: nil, keyEquivalent: ""))
@@ -210,7 +230,6 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         statusItem.menu = menu
 
         // submenu Color
-
         // colorMenu.autoenablesItems = false
         let colorTitles = ["Dark", "Red", "Green", "Yellow", "Purple"]
         for title in colorTitles {
@@ -226,6 +245,8 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         let colorItem = menu.item(withTitle: "Color")
         menu.setSubmenu(colorMenu, for: colorItem!)
     }
+    
+    
 
     func setDefaultTime () {
         let defaultItem = menu.item(withTitle: "20 minutes")
@@ -233,6 +254,40 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         timerInterval = 60 * 20
     }
 
-    func animateView() {
+    func setupSoundMenu() {
+        let soundsNames = ["Basso",
+                           "Blow",
+                           "Bottle",
+                           "Frog",
+                           "Funk",
+                           "Glass",
+                           "Hero",
+                           "Morse",
+                           "Ping",
+                           "Pop",
+                           "Purr",
+                           "Sosumi",
+                           "Submarine",
+                           "Tink"]
+        
+        for sound in soundsNames {
+            let soundItem = NSMenuItem()
+            soundItem.title = sound
+            soundItem.target = self
+            soundItem.action = #selector(changeSound(sender:))
+            soundMenu.addItem(soundItem)
+        }
+        menu.addItem(NSMenuItem(title: "Sound", action: nil, keyEquivalent: "S"))
+        let soundItem = menu.item(withTitle: "Sound")
+        menu.setSubmenu(soundMenu, for: soundItem!)
+        let defaultSound = soundMenu.item(withTitle: "Purr")
+        defaultSound?.state = .on
     }
+
+     func windowWillEnterFullScreen(_ notification: Notification) {
+        print("full screen.....!!")
+    }
+    
+    
+
 }

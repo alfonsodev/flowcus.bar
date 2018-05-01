@@ -31,5 +31,13 @@ https://stackoverflow.com/questions/3087193/how-to-access-windows-hierarchy-for-
 https://stackoverflow.com/questions/7793549/control-nsslider-with-arrows-on-nsmenu-for-a-nsstatusitem-objective-c-cocoa
 
 
-## System Notification
+## System Notification, for Screen resolution change
 NSApplicationDidChangeScreenParametersNotification
+
+## to show percentage 
+https://stackoverflow.com/questions/15050036/cabasicanimation-current-elapsed-time
+
+## detect full scren and place the bar on top of the top
+
+## add a dimmer 
+https://hazeover.com/

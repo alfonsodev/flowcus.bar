@@ -11,6 +11,7 @@
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
 		05EB95332094665400A5D76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95322094665400A5D76C /* Assets.xcassets */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
+		05F4B7F42098C23400D9D5FE /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 05F4B7F32098C23400D9D5FE /* TODO.md */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		05EB95352094665400A5D76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		05EB95372094665400A5D76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05EB95382094665400A5D76C /* flowcus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flowcus.entitlements; sourceTree = "<group>"; };
+		05F4B7F32098C23400D9D5FE /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -61,6 +63,7 @@
 				05EB95372094665400A5D76C /* Info.plist */,
 				05EB95382094665400A5D76C /* flowcus.entitlements */,
 				056006A520950F520005A4BD /* README.md */,
+				05F4B7F32098C23400D9D5FE /* TODO.md */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -124,6 +127,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F4B7F42098C23400D9D5FE /* TODO.md in Resources */,
 				05EB95332094665400A5D76C /* Assets.xcassets in Resources */,
 				056006A8209524950005A4BD /* ding.m4a in Resources */,
 				05EB95362094665400A5D76C /* MainMenu.xib in Resources */,
