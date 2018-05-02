@@ -46,23 +46,26 @@ extension AppDelegate {
         switch state {
         case kBarStateInProgress:
             return [
-                NSMenuItem(title: "Stop 𝓕lowcus", action: #selector(stop), keyEquivalent: "R"),
+                NSMenuItem(title: "Stop", action: #selector(stop), keyEquivalent: "R"),
                 NSMenuItem(title: "Pause", action: #selector(pauseResume), keyEquivalent: "")
+
             ]
         case kBarStatePaused:
             return [
-                NSMenuItem(title: "Stop 𝓕lowcus", action: #selector(stop), keyEquivalent: "R"),
+                NSMenuItem(title: "Stop", action: #selector(stop), keyEquivalent: "R"),
                 NSMenuItem(title: "Resume", action: #selector(pauseResume), keyEquivalent: "")
             ]
         default:
-            return [ NSMenuItem(title: "Start 𝓕lowcus", action: #selector(startRestart), keyEquivalent: "R") ]
+            return [ NSMenuItem(title: "Start", action: #selector(startRestart), keyEquivalent: "R") ]
         }
     }
 
     func renderMenu(state: menuState) {
         let menu = NSMenu()
         let colorMenu = NSMenu()
- 
+        menu.addItem(NSMenuItem(title: "𝓕lowcus v1.0.4", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem.separator())
+
         let controlItems = controlMenu(state: state.bar)
         for cItem in controlItems {
             menu.addItem(cItem)
@@ -79,8 +82,6 @@ extension AppDelegate {
         menu.addItem(NSMenuItem(title: "Sound", action: nil, keyEquivalent: "S"))
         menu.setSubmenu(getSoundMenu(), for: menu.item(withTitle: "Sound")!)
 
-        menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Flowcus v1.0.4", action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
         for (index, value) in menu.items.enumerated() {

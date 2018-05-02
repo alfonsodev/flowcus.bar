@@ -26,14 +26,24 @@ extension AppDelegate {
     }
 
     @objc func stop() {
+        if mState.getBar() == kBarStatePaused {
+            DispatchQueue.main.async {
+                self.v.layer?.resumeAnimation()
+                self.v.alphaValue = 0
+                self.v.layer?.removeAllAnimations()
+                self.v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
+                self.v.alphaValue = 1
+            }
+        } else {
+            DispatchQueue.main.async {
+                self.v.alphaValue = 0
+                self.v.layer?.removeAllAnimations()
+                self.v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
+                self.v.alphaValue = 1
+            }
+        }
         mState.setBar(bar: kBarStateInitial)
         renderMenu(state: mState.getState())
-        DispatchQueue.main.async {
-            self.v.alphaValue = 0
-            self.v.layer?.removeAllAnimations()
-            self.v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
-            self.v.alphaValue = 1
-        }
     }
 
     @objc func startRestart() {
