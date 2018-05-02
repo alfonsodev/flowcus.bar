@@ -12,6 +12,11 @@
 		05EB95332094665400A5D76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95322094665400A5D76C /* Assets.xcassets */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
 		05F4B7F42098C23400D9D5FE /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 05F4B7F32098C23400D9D5FE /* TODO.md */; };
+		05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7F52098DFC500D9D5FE /* CALayer+PauseAnimation.swift */; };
+		05F4B7F82099AAAE00D9D5FE /* Int+format.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7F72099AAAE00D9D5FE /* Int+format.swift */; };
+		05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */; };
+		05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */; };
+		05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FD209A64FC00D9D5FE /* MenuState.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +29,11 @@
 		05EB95372094665400A5D76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05EB95382094665400A5D76C /* flowcus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flowcus.entitlements; sourceTree = "<group>"; };
 		05F4B7F32098C23400D9D5FE /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
+		05F4B7F52098DFC500D9D5FE /* CALayer+PauseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+PauseAnimation.swift"; sourceTree = "<group>"; };
+		05F4B7F72099AAAE00D9D5FE /* Int+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+format.swift"; sourceTree = "<group>"; };
+		05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+menu.swift"; sourceTree = "<group>"; };
+		05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Handlers.swift"; sourceTree = "<group>"; };
+		05F4B7FD209A64FC00D9D5FE /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -64,6 +74,11 @@
 				05EB95382094665400A5D76C /* flowcus.entitlements */,
 				056006A520950F520005A4BD /* README.md */,
 				05F4B7F32098C23400D9D5FE /* TODO.md */,
+				05F4B7F52098DFC500D9D5FE /* CALayer+PauseAnimation.swift */,
+				05F4B7F72099AAAE00D9D5FE /* Int+format.swift */,
+				05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */,
+				05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */,
+				05F4B7FD209A64FC00D9D5FE /* MenuState.swift */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -141,7 +156,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */,
 				05EB95312094665400A5D76C /* AppDelegate.swift in Sources */,
+				05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */,
+				05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */,
+				05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */,
+				05F4B7F82099AAAE00D9D5FE /* Int+format.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
