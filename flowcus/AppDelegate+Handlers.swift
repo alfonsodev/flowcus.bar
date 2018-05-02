@@ -11,16 +11,17 @@ import AVFoundation
 
 extension AppDelegate {
 
-
     @objc func pauseResume() {
         if mState.getBar() == kBarStateInProgress {
             timeWhenPaused = Int(CACurrentMediaTime())
             v.layer?.pauseAnimation()
             mState.setBar(bar: kBarStatePaused)
+            renderMenu(state: mState.getState())
         } else if mState.getBar() == kBarStatePaused {
             resumeTime = Int(CACurrentMediaTime()) - timeWhenPaused
             v.layer?.resumeAnimation()
             mState.setBar(bar: kBarStateInProgress)
+            renderMenu(state: mState.getState())
         }
     }
 
@@ -31,9 +32,9 @@ extension AppDelegate {
             self.v.alphaValue = 0
             self.v.layer?.removeAllAnimations()
             self.v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
+            self.v.alphaValue = 1
         }
     }
-
 
     @objc func startRestart() {
         mState.setBar(bar: kBarStateInProgress)
@@ -49,7 +50,7 @@ extension AppDelegate {
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
                 context.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
-                context.duration = TimeInterval(self.timerInterval)
+                context.duration = TimeInterval(durationMap[self.mState.getDuration()]!)
                 context.allowsImplicitAnimation = true
                 // context.timingFunction = CAMediaTimingFunction
                 self.v.frame = NSRect(x: 0, y: 0, width: (self.window.contentView?.bounds.width)!, height: 3)
@@ -100,7 +101,6 @@ extension AppDelegate {
         mState.setDuration(duration: selectedItem.title)
         renderMenu(state: mState.getState())
         
-        timerInterval = durationMap[mState.getDuration()]!
-    }
+     }
 
 }

@@ -49,6 +49,11 @@ extension AppDelegate {
                 NSMenuItem(title: "Stop 𝓕lowcus", action: #selector(stop), keyEquivalent: "R"),
                 NSMenuItem(title: "Pause", action: #selector(pauseResume), keyEquivalent: "")
             ]
+        case kBarStatePaused:
+            return [
+                NSMenuItem(title: "Stop 𝓕lowcus", action: #selector(stop), keyEquivalent: "R"),
+                NSMenuItem(title: "Resume", action: #selector(pauseResume), keyEquivalent: "")
+            ]
         default:
             return [ NSMenuItem(title: "Start 𝓕lowcus", action: #selector(startRestart), keyEquivalent: "R") ]
         }

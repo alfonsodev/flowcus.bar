@@ -19,16 +19,15 @@ class MenuState {
     var state = menuState()
     var defaults = UserDefaults.init(suiteName: "flowcus")
     init() {
+        state.bar = kBarStateInitial
         state.color = (defaults?.string(forKey: "color"))!
-        state.bar = (defaults?.string(forKey: "bar"))!
         state.duration = (defaults?.string(forKey: "duration"))!
         state.sound = (defaults?.string(forKey: "sound"))!
     }
     
     func setBar(bar: String) {
         state.bar = bar
-        defaults?.set(state.bar, forKey: "bar")
-    }
+     }
 
     func getBar() -> String {
         return state.bar
