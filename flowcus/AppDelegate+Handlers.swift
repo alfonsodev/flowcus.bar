@@ -17,6 +17,7 @@ extension AppDelegate {
             v.layer?.pauseAnimation()
             mState.setBar(bar: kBarStatePaused)
             renderMenu(state: mState.getState())
+            
         } else if mState.getBar() == kBarStatePaused {
             resumeTime = Int(CACurrentMediaTime()) - timeWhenPaused
             v.layer?.resumeAnimation()
@@ -41,6 +42,7 @@ extension AppDelegate {
                 self.v.frame = NSRect(x: 0, y: 0, width: 0, height: 3)
                 self.v.alphaValue = 1
             }
+
         }
         mState.setBar(bar: kBarStateInitial)
         renderMenu(state: mState.getState())

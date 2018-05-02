@@ -17,6 +17,7 @@ let kBarStateInProgress = "inProgress"
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
+
     var mState = MenuState()
     var player: AVAudioPlayer?
     var timeMenuItems = [NSMenuItem]()
@@ -67,13 +68,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     @objc func updateMenuTime() {
         let useTime = resumeTime > 0 ? resumeTime : self.timeStarts
         let animationLeft = Int(CACurrentMediaTime()) - useTime
-//        let secondsLeft = durationMap[selectedDurationIndex] - animationLeft
-//        if secondsLeft > 0 && mState.getBar() == kBarStateInProgress {
-//            updateTimerMenu(title: "Pause  \(secondsLeft.toAudioString) left")
-//        } else if mState.getBar() == kBarStatePaused {
-//            let time = durations[selectedDurationIndex] - timeWhenPaused
-//            updateTimerMenu(title: "Pause  \(time.toAudioString) left")
-//        }
+        let secondsLeft = durationMap[mState.getDuration()]! - animationLeft
+        if secondsLeft > 0 && mState.getBar() == kBarStateInProgress {
+         statusItem.menu?.items[0].title = "𝓕lowcus  [\(secondsLeft.toAudioString)]"
+        } else if mState.getBar() == kBarStatePaused {
+            let time = durationMap[mState.getDuration()]! - timeWhenPaused
+            statusItem.menu?.items[0].title = "𝓕lowcus  [\(time.toAudioString)]"
+        }
     }
     
     func showNotification() -> Void {

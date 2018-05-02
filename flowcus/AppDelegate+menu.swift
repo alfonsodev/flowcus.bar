@@ -59,11 +59,14 @@ extension AppDelegate {
             return [ NSMenuItem(title: "Start", action: #selector(startRestart), keyEquivalent: "R") ]
         }
     }
-
+    
+    
+     
     func renderMenu(state: menuState) {
         let menu = NSMenu()
+        menu.removeAllItems()
         let colorMenu = NSMenu()
-        menu.addItem(NSMenuItem(title: "𝓕lowcus v1.0.4", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "𝓕lowcus", action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
 
         let controlItems = controlMenu(state: state.bar)
@@ -88,7 +91,6 @@ extension AppDelegate {
             value.tag = index
         }
 
-        statusItem.menu = menu
         
         // submenu Color
         // colorMenu.autoenablesItems = false
@@ -110,6 +112,9 @@ extension AppDelegate {
         timerInterval = 60 * 20
         
         menu.setSubmenu(colorMenu, for: colorItem!)
+        
+        statusItem.menu = menu
+
     }
     
 
