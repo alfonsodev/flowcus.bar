@@ -20,9 +20,9 @@ class MenuState {
     var defaults = UserDefaults.init(suiteName: "flowcus")
     init() {
         state.bar = kBarStateInitial
-        state.color = (defaults?.string(forKey: "color"))!
-        state.duration = (defaults?.string(forKey: "duration"))!
-        state.sound = (defaults?.string(forKey: "sound"))!
+        state.color = defaults?.string(forKey: "color") ?? "Green"
+        state.duration = defaults?.string(forKey: "duration") ?? "20 minutes"
+        state.sound = defaults?.string(forKey: "sound") ?? "Tink"
     }
     
     func setBar(bar: String) {
