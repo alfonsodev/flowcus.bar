@@ -13,11 +13,12 @@ let kBarStateInitial = "initial"
 let kBarStateComplete = "complete"
 let kBarStatePaused = "paused"
 let kBarStateInProgress = "inProgress"
+let barHeight = 3
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
-
+    
     var mState = MenuState()
     var player: AVAudioPlayer?
     var timeMenuItems = [NSMenuItem]()
@@ -25,20 +26,20 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var color = NSColor.red
     var darkColor = NSColor(red: 0.137, green: 0.137, blue: 0.137, alpha: 1.00)
     let v: NSView = {
-        let view =  NSView(frame: NSRect(x: 0, y: 0, width: 0, height: 3))
+        let view =  NSView(frame: NSRect(x: 0, y: 0, width: 0, height: barHeight))
         view.wantsLayer = true
         view.layer?.backgroundColor = NSColor(red: 0.137, green: 0.137, blue: 0.137, alpha: 1.00).cgColor
         view.layer?.cornerRadius = 0
         return view
     }()
     var sound = NSSound(named: NSSound.Name(rawValue: "Purr"))
-    
     let statusItem = NSStatusBar.system.statusItem(withLength:NSStatusItem.squareLength)
+    
     var timeStarts = 0
     var timer = Timer()
     
     var selectedDurationIndex = 3
-     var timeWhenPaused = 0
+    var timeWhenPaused = 0
     var resumeTime = 0
     
     func applicationDidResignActive(_ notification: Notification) {
@@ -50,7 +51,8 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         makeWindowTransparentAndAlwaysOnTop()
-        let frame = NSRect(x: 0, y: NSScreen.main!.frame.height, width: NSScreen.main!.frame.width, height: 3)
+        let visibleFrame = NSScreen.main!.visibleFrame
+        let frame = NSRect(x: visibleFrame.minX, y: visibleFrame.maxY, width: visibleFrame.width, height:  CGFloat(integerLiteral: barHeight))
         window.setFrame(frame, display: true)
         window.makeKey()
         window.orderFront(self)
@@ -60,35 +62,19 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         window.contentView?.addSubview(v)
         renderMenu(state: mState.getState())
         
+        // let text = NSText(frame: NSRect(x: 0, y: -5, width: 500, height: barHeight))
+        // text.string = "BTC: $129 ▾ | ETH: $694.53 ▴"
+        // text.backgroundColor = .clear
+        // text.textColor = .white
+        // text.font = NSFont(name: "SF UI Text Bold", size: 9)
+        // window.contentView?.addSubview(text)
+        
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("f"))
         }
     }
     
-    @objc func updateMenuTime() {
-        let useTime = resumeTime > 0 ? resumeTime : self.timeStarts
-        let animationLeft = Int(CACurrentMediaTime()) - useTime
-        let secondsLeft = durationMap[mState.getDuration()]! - animationLeft
-        if secondsLeft > 0 && mState.getBar() == kBarStateInProgress {
-         statusItem.menu?.items[0].title = "𝓕lowcus  [\(secondsLeft.toAudioString)]"
-        } else if mState.getBar() == kBarStatePaused {
-            let time = durationMap[mState.getDuration()]! - timeWhenPaused
-            statusItem.menu?.items[0].title = "𝓕lowcus  [\(time.toAudioString)]"
-        }
-    }
-    
-    func showNotification() -> Void {
-        let notification = NSUserNotification()
-        notification.title = "𝓕lowcus."
-        notification.subtitle = "✅ Complete"
-        NSUserNotificationCenter.default.delegate = self as NSUserNotificationCenterDelegate
-        NSUserNotificationCenter.default.deliver(notification)
-    }
-    
-    func userNotificationCenter(_ center: NSUserNotificationCenter,
-                                shouldPresent notification: NSUserNotification) -> Bool {
-        return true
-    }
+  
  
     func makeWindowVisibleWhenOtherAppsAreFullScreen() {
         
@@ -105,7 +91,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         window.backgroundColor = NSColor.clear
         window.isOpaque = false
         window.title = ""
-        window.level = NSWindow.Level.floating
+        window.level = .floating
         window.hasShadow = false
         window.titlebarAppearsTransparent = true
         window.standardWindowButton(.closeButton)?.isHidden = true

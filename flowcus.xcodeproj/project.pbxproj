@@ -17,6 +17,7 @@
 		05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */; };
 		05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */; };
 		05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FD209A64FC00D9D5FE /* MenuState.swift */; };
+		05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -34,6 +35,7 @@
 		05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+menu.swift"; sourceTree = "<group>"; };
 		05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Handlers.swift"; sourceTree = "<group>"; };
 		05F4B7FD209A64FC00D9D5FE /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
+		05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,6 +81,7 @@
 				05F4B7F92099F5A500D9D5FE /* AppDelegate+menu.swift */,
 				05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */,
 				05F4B7FD209A64FC00D9D5FE /* MenuState.swift */,
+				05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -157,6 +160,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */,
+				05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */,
 				05EB95312094665400A5D76C /* AppDelegate.swift in Sources */,
 				05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */,
 				05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */,
@@ -292,10 +296,13 @@
 				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8UB63GVU76;
 				INFOPLIST_FILE = flowcus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cafeconcodigo.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.12;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -307,10 +314,13 @@
 				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = 8UB63GVU76;
 				INFOPLIST_FILE = flowcus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
+				MACOSX_DEPLOYMENT_TARGET = 10.11;
 				PRODUCT_BUNDLE_IDENTIFIER = com.cafeconcodigo.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx10.12;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

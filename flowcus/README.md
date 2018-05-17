@@ -64,3 +64,14 @@ print("Key = \(element.key) Value = \(element.value)" )
 
 ## User defaults
 https://developer.apple.com/documentation/foundation/userdefaults
+
+
+
+## Build for older SDKs
+https://github.com/phracker/MacOSX-SDKs
+https://medium.com/@hacknicity/working-with-multiple-versions-of-xcode-e331c01aa6bc
+https://stackoverflow.com/questions/11424920/how-to-point-xcode-to-an-old-sdk-so-it-can-be-used-as-a-base-sdk/11424966
+
+xz -d name_of_the+file
+
+
