@@ -48,7 +48,6 @@ extension AppDelegate {
             return [
                 NSMenuItem(title: "Stop", action: #selector(stop), keyEquivalent: "R"),
                 NSMenuItem(title: "Pause", action: #selector(pauseResume), keyEquivalent: "")
-
             ]
         case kBarStatePaused:
             return [

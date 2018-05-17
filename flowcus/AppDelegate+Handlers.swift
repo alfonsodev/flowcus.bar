@@ -29,15 +29,14 @@ extension AppDelegate {
             timeWhenPaused = Int(CACurrentMediaTime())
             v.layer?.pauseAnimation()
             mState.setBar(bar: kBarStatePaused)
-            // renderMenu(state: mState.getState())
+            renderMenu(state: mState.getState())
             timer.invalidate()
             
         } else if mState.getBar() == kBarStatePaused {
             resumeTime = Int(CACurrentMediaTime()) - timeWhenPaused
             v.layer?.resumeAnimation()
             mState.setBar(bar: kBarStateInProgress)
-            
-            // renderMenu(state: mState.getState())
+            renderMenu(state: mState.getState())
         }
     }
 
