@@ -109,11 +109,8 @@ extension AppDelegate {
         
         menu.item(withTitle: state.duration)?.state = .on
         timerInterval = 60 * 20
-        
         menu.setSubmenu(colorMenu, for: colorItem!)
-        
         statusItem.menu = menu
-
     }
     
 

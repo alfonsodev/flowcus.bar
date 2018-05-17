@@ -42,6 +42,7 @@ extension AppDelegate {
 
     @objc func stop() {
         if mState.getBar() == kBarStatePaused {
+            mState.setBar(bar: kBarStateInitial)
             DispatchQueue.main.async {
                 self.v.layer?.resumeAnimation()
                 self.v.alphaValue = 0
@@ -50,6 +51,7 @@ extension AppDelegate {
                 self.v.alphaValue = 1
             }
         } else {
+            mState.setBar(bar: kBarStateInitial)
             DispatchQueue.main.async {
                 self.v.alphaValue = 0
                 self.v.layer?.removeAllAnimations()
@@ -58,7 +60,6 @@ extension AppDelegate {
             }
 
         }
-        mState.setBar(bar: kBarStateInitial)
         renderMenu(state: mState.getState())
     }
 
@@ -81,10 +82,12 @@ extension AppDelegate {
                 // context.timingFunction = CAMediaTimingFunction
                 self.v.frame = NSRect(x: 0, y: 0, width: Int((self.window.contentView?.bounds.width)!), height: barHeight)
             }, completionHandler: {
-                self.showNotification()
-                self.sound?.volume = 0.7
-                self.sound?.play()
-                self.mState.setBar(bar: kBarStateComplete)
+                if (self.mState.getState().bar != kBarStateInitial) {
+                    self.showNotification()
+                    self.sound?.volume = 0.7
+                    self.sound?.play()
+                    self.mState.setBar(bar: kBarStateComplete)
+                }
             })
         }
     }
