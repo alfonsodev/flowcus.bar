@@ -23,8 +23,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var player: AVAudioPlayer?
     var timeMenuItems = [NSMenuItem]()
     var timerInterval = 0
-    var color = NSColor.red
-    var darkColor = NSColor(red: 0.137, green: 0.137, blue: 0.137, alpha: 1.00)
+ 
     let v: NSView = {
         let view =  NSView(frame: NSRect(x: 0, y: 0, width: 0, height: barHeight))
         view.wantsLayer = true

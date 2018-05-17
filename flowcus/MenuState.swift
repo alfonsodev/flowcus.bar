@@ -5,7 +5,7 @@
 //  Created by Alfonso on 03.05.18.
 //  Copyright © 2018 CafeConCodigo. All rights reserved.
 //
-
+import Cocoa
 import Foundation
 
 struct menuState {
@@ -42,7 +42,23 @@ class MenuState {
     func getColor() -> String {
         return state.color
     }
-    
+    func getCGColor(name: String) -> CGColor {
+        let darkColor = NSColor(red: 0.137, green: 0.137, blue: 0.137, alpha: 1.00)
+        switch name {
+        case "Dark":
+            return darkColor.cgColor
+        case "Red":
+            return NSColor.red.cgColor
+        case "Green":
+            return NSColor.green.cgColor
+        case "Yellow":
+            return NSColor.yellow.cgColor
+        case "Purple":
+            return NSColor.purple.cgColor
+        default:
+            return darkColor.cgColor
+        }
+    }
     func setDuration(duration: String) {
         state.duration = duration
         defaults?.set(state.duration, forKey: "duration")

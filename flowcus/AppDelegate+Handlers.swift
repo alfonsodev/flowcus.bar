@@ -71,7 +71,7 @@ extension AppDelegate {
         RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
  
         v.frame = NSRect(x: 0, y: 0, width: 0, height: CGFloat(integerLiteral: barHeight))
-        v.layer?.backgroundColor = color.cgColor
+        v.layer?.backgroundColor = mState.getCGColor(name: mState.getColor())
         
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
@@ -103,22 +103,8 @@ extension AppDelegate {
         let selectedColorTitle = (sender as! NSMenuItem).title
         mState.setColor(color: selectedColorTitle)
         renderMenu(state: mState.getState())
-        
-        switch selectedColorTitle {
-        case "Dark":
-            color =  darkColor
-        case "Red":
-            color = NSColor.red
-        case "Green":
-            color = NSColor.green
-        case "Yellow":
-            color = NSColor.yellow
-        case "Purple":
-            color = NSColor.purple
-        default:
-            color = darkColor
-        }
-        v.layer?.backgroundColor = color.cgColor
+
+        v.layer?.backgroundColor = mState.getCGColor(name: selectedColorTitle)
     }
 
     @objc func changeDuration(sender: Any) {
