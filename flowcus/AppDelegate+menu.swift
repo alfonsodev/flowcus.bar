@@ -98,7 +98,6 @@ extension AppDelegate {
             value.tag = index
         }
 
-        
         // submenu Color
         // colorMenu.autoenablesItems = false
         let colorTitles = ["Dark", "Red", "Green", "Yellow", "Purple"]

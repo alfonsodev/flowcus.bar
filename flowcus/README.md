@@ -65,8 +65,6 @@ print("Key = \(element.key) Value = \(element.value)" )
 ## User defaults
 https://developer.apple.com/documentation/foundation/userdefaults
 
-
-
 ## Build for older SDKs
 https://github.com/phracker/MacOSX-SDKs
 https://medium.com/@hacknicity/working-with-multiple-versions-of-xcode-e331c01aa6bc
@@ -74,10 +72,11 @@ https://stackoverflow.com/questions/11424920/how-to-point-xcode-to-an-old-sdk-so
 
 xz -d name_of_the+file
 
-
 ## Handle multiple OS targets
 
 The last version I'm supporting is 10.13
 XCode 9.3 works well for targeting SDK 10.13 and Swift 4.1
 XCode 9.2 ... 
 To know the version then we need to >> https://en.wikipedia.org/wiki/Xcode
+
+## Sing with Apple ID Developer to distrubute the app without Apple Store

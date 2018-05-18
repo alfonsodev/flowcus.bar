@@ -24,7 +24,7 @@ extension AppDelegate {
             statusItem.menu?.items[0].title = "𝓕lowcus  [\(secondsLeft.toAudioString)]"
         }
     }
-    
+    // When pressing on pause/resume from the menu
     @objc func pauseResume() {
         if mState.getBar() == kBarStateInProgress {
             timeWhenPaused = Int(CACurrentMediaTime())
@@ -62,7 +62,19 @@ extension AppDelegate {
         }
         renderMenu(state: mState.getState())
     }
+    
+    func updateUI(asyncClosure: @escaping (() -> ())) {
+        DispatchQueue.main.async {
+            NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
+                context.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
+                context.duration = TimeInterval(durationMap[self.mState.getDuration()]!)
+                context.allowsImplicitAnimation = true
+                // context.timingFunction = CAMediaTimingFunction
+                self.v.frame = NSRect(x: 0, y: 0, width: Int((self.window.contentView?.bounds.width)!), height: barHeight)
+            }, completionHandler:  asyncClosure)
+        }
 
+    }
     @objc func startRestart() {
         mState.setBar(bar: kBarStateInProgress)
         let s = mState.getBar()
@@ -76,26 +88,20 @@ extension AppDelegate {
  
         v.frame = NSRect(x: 0, y: 0, width: 0, height: CGFloat(integerLiteral: barHeight))
         v.layer?.backgroundColor = mState.getCGColor(name: mState.getColor())
-        
-        DispatchQueue.main.async {
-            NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
-                context.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
-                context.duration = TimeInterval(durationMap[self.mState.getDuration()]!)
-                context.allowsImplicitAnimation = true
-                // context.timingFunction = CAMediaTimingFunction
-                self.v.frame = NSRect(x: 0, y: 0, width: Int((self.window.contentView?.bounds.width)!), height: barHeight)
-            }, completionHandler: {
-                DispatchQueue.main.async {
-                    let barState = self.mState.getBar()
-                    if (barState == kBarStateInitial || barState == kBarStateComplete) {
-                        self.showNotification()
-                        self.sound?.volume = 0.7
-                        self.sound?.play()
-                        self.mState.setBar(bar: kBarStateComplete)
-                    }
+        let playSoundAndNotify: (() -> ()) = {
+            DispatchQueue.main.async {
+                let barState = self.mState.getBar()
+                if (barState == kBarStateInProgress) {
+                    self.showNotification()
+                    self.sound?.volume = 0.7
+                    self.sound?.play()
+                    self.mState.setBar(bar: kBarStateComplete)
+                    self.renderMenu(state: self.mState.getState())
                 }
-            })
+            }
         }
+
+        updateUI(asyncClosure: playSoundAndNotify)
     }
 
     @objc func changeSound(sender: Any) {
