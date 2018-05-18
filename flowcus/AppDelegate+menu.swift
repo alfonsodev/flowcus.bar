@@ -18,10 +18,14 @@ let durationMap = [
     "40 minutes": 60 * 40,
     "1 hour": 60 * 60,
 ]
+
+
 let mapStateTitle = [
     kBarStateInitial: "Start 𝓕lowcus",
     kBarStateInProgress: "Restart 𝓕lowcus",
 ]
+
+
 extension AppDelegate {
     func getVolumeItem() {
         // setup volume
@@ -70,7 +74,7 @@ extension AppDelegate {
         let menu = NSMenu()
         menu.removeAllItems()
         let colorMenu = NSMenu()
-        menu.addItem(NSMenuItem(title: "𝓕lowcus", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(title: "𝓕lowcus \(Bundle.main.releaseVersionNumberPretty)", action: nil, keyEquivalent: ""))
         menu.addItem(NSMenuItem.separator())
 
         let controlItems = controlMenu(state: state.bar)

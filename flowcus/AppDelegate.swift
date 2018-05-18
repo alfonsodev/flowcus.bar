@@ -40,12 +40,23 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     var selectedDurationIndex = 3
     var timeWhenPaused = 0
     var resumeTime = 0
+    var version: String?
+    var build: String?
     
     func applicationDidResignActive(_ notification: Notification) {
         window.makeKey()
         window.orderFront(self)
         window.makeMain()
         window.orderFrontRegardless()
+        
+        // Get version and build
+        if let version = Bundle.main.infoDictionary?["CFBundleShortVersionString"] as? String {
+            self.version = version
+        }
+        if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
+            self.build = build
+        }
+
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {

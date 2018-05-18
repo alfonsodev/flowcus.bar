@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEA20AF43980007E238 /* Assets.xcassets */; };
+		050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */; };
 		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
 		058DA47920AE2439009834D3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058DA47820AE2439009834D3 /* StoreKit.framework */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
@@ -23,6 +24,7 @@
 
 /* Begin PBXFileReference section */
 		050CCEEA20AF43980007E238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+pretty.swift"; sourceTree = "<group>"; };
 		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
 		058DA47820AE2439009834D3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
@@ -94,6 +96,7 @@
 				05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */,
 				05F4B7FD209A64FC00D9D5FE /* MenuState.swift */,
 				05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */,
+				050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -179,6 +182,7 @@
 				05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */,
 				05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */,
 				05EB95312094665400A5D76C /* AppDelegate.swift in Sources */,
+				050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */,
 				05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */,
 				05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */,
 				05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */,

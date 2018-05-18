@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "flowcus/AppDelegate+menu.swift"
-            timestampString = "548359975.6636339"
+            timestampString = "548360770.824196"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "46"
-            endingLineNumber = "46"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "getDurationItems(enabled:)"
             landmarkType = "7">
          </BreakpointContent>
