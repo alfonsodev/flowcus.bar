@@ -3,7 +3,7 @@
 //  flowcus
 //
 //  Created by Alfonso on 03.05.18.
-//  Copyright © 2018 CafeConCodigo. All rights reserved.
+//  Copyright © 2018 Codefulness. All rights reserved.
 //
 import Cocoa
 import Foundation
@@ -17,7 +17,7 @@ struct menuState {
 
 class MenuState {
     var state = menuState()
-    var defaults = UserDefaults.init(suiteName: "flowcus")
+    var defaults = UserDefaults.init(suiteName: "Flowcus")
     init() {
         state.bar = kBarStateInitial
         state.color = defaults?.string(forKey: "color") ?? "Green"

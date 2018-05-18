@@ -3,7 +3,7 @@
 //  flowcus
 //
 //  Created by Alfonso on 28.04.18.
-//  Copyright © 2018 CafeConCodigo. All rights reserved.
+//  Copyright © 2018 Codefulness. All rights reserved.
 //
 
 import Cocoa
@@ -60,13 +60,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSApplication.shared.activate(ignoringOtherApps: true)
         window.contentView?.addSubview(v)
         renderMenu(state: mState.getState())
-        
-        // let text = NSText(frame: NSRect(x: 0, y: -5, width: 500, height: barHeight))
-        // text.string = "BTC: $129 ▾ | ETH: $694.53 ▴"
-        // text.backgroundColor = .clear
-        // text.textColor = .white
-        // text.font = NSFont(name: "SF UI Text Bold", size: 9)
-        // window.contentView?.addSubview(text)
         
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("f"))

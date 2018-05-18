@@ -3,7 +3,7 @@
 //  flowcus
 //
 //  Created by Alfonso on 02.05.18.
-//  Copyright © 2018 CafeConCodigo. All rights reserved.
+//  Copyright © 2018 Codefulness. All rights reserved.
 //
 
 import Cocoa
@@ -33,11 +33,16 @@ extension AppDelegate {
         // menu.addItem(volItem)
     }
     
-    func getDurationItems() -> [NSMenuItem] {
+    func getDurationItems(enabled: Bool) -> [NSMenuItem] {
         var items = [NSMenuItem]()
         let sortedMap = durationMap.sorted { $0.value < $1.value }
         for element in sortedMap {
-            items.append(NSMenuItem(title: element.key, action: #selector(changeDuration(sender:)), keyEquivalent: ""))
+            let i = NSMenuItem(title: element.key, action: #selector(changeDuration(sender:)), keyEquivalent: "")
+            if (!enabled) {
+                i.isEnabled = false
+                i.action = nil
+            }
+            items.append(i)
         }
         return items
     }
@@ -74,11 +79,14 @@ extension AppDelegate {
         }
         // menu.addItem(NSMenuItem(title: "\(durations[selectedDurationIndex].toAudioString) left", action:nil, keyEquivalent: ""))
         // menu.addItem(NSMenuItem(title: "Stop", action: nil, keyEquivalent: ""))
+        let barState = mState.getState().bar
+        let enableMenu = barState == kBarStateComplete || barState == kBarStateInitial
         menu.addItem(NSMenuItem.separator())
-        let durationItems = getDurationItems()
+        let durationItems = getDurationItems(enabled: enableMenu)
         for item in durationItems {
             menu.addItem(item)
         }
+        
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Color", action: #selector(changeDuration), keyEquivalent: "c"))
         menu.addItem(NSMenuItem(title: "Sound", action: nil, keyEquivalent: "S"))
@@ -104,9 +112,7 @@ extension AppDelegate {
         }
         
         colorMenu.item(withTitle: state.color)?.state = .on
-        
         let colorItem = menu.item(withTitle: "Color")
-        
         menu.item(withTitle: state.duration)?.state = .on
         timerInterval = 60 * 20
         menu.setSubmenu(colorMenu, for: colorItem!)

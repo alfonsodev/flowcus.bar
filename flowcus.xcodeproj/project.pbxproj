@@ -7,9 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEA20AF43980007E238 /* Assets.xcassets */; };
 		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
+		058DA47920AE2439009834D3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058DA47820AE2439009834D3 /* StoreKit.framework */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
-		05EB95332094665400A5D76C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95322094665400A5D76C /* Assets.xcassets */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
 		05F4B7F42098C23400D9D5FE /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 05F4B7F32098C23400D9D5FE /* TODO.md */; };
 		05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7F52098DFC500D9D5FE /* CALayer+PauseAnimation.swift */; };
@@ -21,11 +22,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		050CCEEA20AF43980007E238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
+		058DA47820AE2439009834D3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05EB952D2094665400A5D76C /* flowcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flowcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EB95302094665400A5D76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		05EB95322094665400A5D76C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		05EB95352094665400A5D76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		05EB95372094665400A5D76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05EB95382094665400A5D76C /* flowcus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flowcus.entitlements; sourceTree = "<group>"; };
@@ -43,17 +45,27 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				058DA47920AE2439009834D3 /* StoreKit.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		058DA47720AE2439009834D3 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				058DA47820AE2439009834D3 /* StoreKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		05EB95242094665400A5D76C = {
 			isa = PBXGroup;
 			children = (
 				05EB952F2094665400A5D76C /* flowcus */,
 				05EB952E2094665400A5D76C /* Products */,
+				058DA47720AE2439009834D3 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -68,9 +80,9 @@
 		05EB952F2094665400A5D76C /* flowcus */ = {
 			isa = PBXGroup;
 			children = (
+				050CCEEA20AF43980007E238 /* Assets.xcassets */,
 				056006A7209524950005A4BD /* ding.m4a */,
 				05EB95302094665400A5D76C /* AppDelegate.swift */,
-				05EB95322094665400A5D76C /* Assets.xcassets */,
 				05EB95342094665400A5D76C /* MainMenu.xib */,
 				05EB95372094665400A5D76C /* Info.plist */,
 				05EB95382094665400A5D76C /* flowcus.entitlements */,
@@ -119,6 +131,11 @@
 					05EB952C2094665400A5D76C = {
 						CreatedOnToolsVersion = 9.2;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.InAppPurchase = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -146,8 +163,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				05F4B7F42098C23400D9D5FE /* TODO.md in Resources */,
-				05EB95332094665400A5D76C /* Assets.xcassets in Resources */,
 				056006A8209524950005A4BD /* ding.m4a in Resources */,
+				050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */,
 				05EB95362094665400A5D76C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -294,6 +311,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8UB63GVU76;
@@ -302,7 +320,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codefulness.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx10.13;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
@@ -312,6 +331,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = 8UB63GVU76;
@@ -320,7 +340,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codefulness.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SDKROOT = macosx;
+				PROVISIONING_PROFILE_SPECIFIER = "";
+				SDKROOT = macosx10.13;
 				SWIFT_VERSION = 4.0;
 			};
 			name = Release;

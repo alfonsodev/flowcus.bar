@@ -3,7 +3,7 @@
 //  flowcus
 //
 //  Created by Alfonso on 02.05.18.
-//  Copyright © 2018 CafeConCodigo. All rights reserved.
+//  Copyright © 2018 Codefulness. All rights reserved.
 //
 
 import Cocoa
@@ -12,6 +12,7 @@ import AVFoundation
 extension AppDelegate {
     
     @objc func updateMenuTime() {
+        return
         // let useTime = resumeTime > 0 ? resumeTime : self.timeStarts
         if   mState.getBar() == kBarStateInProgress {
             let animationLeft = Int(CACurrentMediaTime()) -  self.timeStarts
@@ -58,16 +59,18 @@ extension AppDelegate {
                 self.v.frame = NSRect(x: 0, y: 0, width: 0, height: barHeight)
                 self.v.alphaValue = 1
             }
-
         }
         renderMenu(state: mState.getState())
     }
 
     @objc func startRestart() {
         mState.setBar(bar: kBarStateInProgress)
+        let s = mState.getBar()
+        
         renderMenu(state: mState.getState())
         timeStarts = Int(CACurrentMediaTime())
         resumeTime = 0
+        // timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateMenuTime), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateMenuTime), userInfo: nil, repeats: true)
         RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
  
@@ -82,11 +85,14 @@ extension AppDelegate {
                 // context.timingFunction = CAMediaTimingFunction
                 self.v.frame = NSRect(x: 0, y: 0, width: Int((self.window.contentView?.bounds.width)!), height: barHeight)
             }, completionHandler: {
-                if (self.mState.getState().bar != kBarStateInitial) {
-                    self.showNotification()
-                    self.sound?.volume = 0.7
-                    self.sound?.play()
-                    self.mState.setBar(bar: kBarStateComplete)
+                DispatchQueue.main.async {
+                    let barState = self.mState.getBar()
+                    if (barState == kBarStateInitial || barState == kBarStateComplete) {
+                        self.showNotification()
+                        self.sound?.volume = 0.7
+                        self.sound?.play()
+                        self.mState.setBar(bar: kBarStateComplete)
+                    }
                 }
             })
         }
@@ -111,7 +117,7 @@ extension AppDelegate {
     }
 
     @objc func changeDuration(sender: Any) {
-        showNotificationConfirm()
+        // showNotificationConfirm()
         let selectedItem = (sender as! NSMenuItem)
         
         mState.setDuration(duration: selectedItem.title)

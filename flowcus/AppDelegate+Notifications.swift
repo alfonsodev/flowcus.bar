@@ -3,7 +3,7 @@
 //  flowcus
 //
 //  Created by Alfonso on 03.05.18.
-//  Copyright © 2018 CafeConCodigo. All rights reserved.
+//  Copyright © 2018 Codefulness. All rights reserved.
 //
 
 import Cocoa
@@ -31,7 +31,7 @@ extension AppDelegate {
     }
     
     func userNotificationCenter(_ center: NSUserNotificationCenter, didDeliver notification: NSUserNotification) {
-        print(notification.response)
+        // print(notification.response)
     }
 
     func userNotificationCenter(_ center: NSUserNotificationCenter,
