@@ -80,3 +80,57 @@ XCode 9.2 ...
 To know the version then we need to >> https://en.wikipedia.org/wiki/Xcode
 
 ## Sing with Apple ID Developer to distrubute the app without Apple Store
+
+
+## What makes the app have an icon on the dock,
+Is to configure Application is Agent UI to true / false
+
+
+## What resolution must the icons have
+https://developer.apple.com/macos/human-interface-guidelines/icons-and-images/image-size-and-resolution/
+## Dock menus
+https://developer.apple.com/macos/human-interface-guidelines/menus/dock-menus/
+https://developer.apple.com/macos/human-interface-guidelines/extensions/menu-bar-extras
+
+## Markdown editors
+https://github.com/alfonsodev/markr
+https://github.com/iwasrobbed/Down (http://commonmark.org/)
+https://github.com/ruddfawcett/Notepad
+
+## Maos sierra
+https://sketchrepo.com/free-sketch/macos-sierra-ui-kit-for-sketch-freebie/
+
+## Touch bar support
+https://sketch.cloud/s/VEp78
+
+## Buggy apps
+https://worthdoingbadly.com/appkitcompat/
+https://news.ycombinator.com/item?id=17116106
+
+
+## Quart Display services
+https://developer.apple.com/library/content/documentation/GraphicsImaging/Conceptual/QuartzDisplayServicesConceptual/Articles/Notification.html#//apple_ref/doc/uid/TP40004235-SW1
+
+- The kCGDisplayBeginConfigurationFlag flag is always set
+> Cocoa already uses this notification mechanism to respond to display reconfigurations. As a result, when a user or application changes a display mode, turns on mirroring, or disconnects a display, Cocoa applications don’t need to be concerned with repositioning or resizing their windows. The application frameworks handle this task automatically.
+
+If you want to receive notifications of configuration changes, here is a brief description of the steps:
+
+
+https://github.com/mgrdcm/macos-fullscreenmode-test
+## Detect full screen
+
+## Open app at login by default.
+## Anatomy of menu
+https://developer.apple.com/macos/human-interface-guidelines/menus/menu-anatomy/
+
+## Read & Write fileLabels 
+- [About file label colors](https://developer.apple.com/documentation/appkit/nsworkspace/1527553-filelabelcolors)
+- [Read all the system tags](https://stackoverflow.com/questions/19970998/get-all-filesystem-tags/19971154#19971154)
+  - `~/Library/SyncedPreferences/com.apple.finder.plist`  
+  > the file does not exit by default but it's created by adding a new tag.
+- [More complete answer)(https://stackoverflow.com/questions/41779969/how-do-i-retrieve-all-available-finder-tags/41780350#41780350)
+- [Question 1](https://stackoverflow.com/questions/38633600/read-write-file-tag-in-cocoa-app-os-x-with-swift-or-obj-c)
+
+- [Openmeta](https://code.google.com/archive/p/openmeta/)
+

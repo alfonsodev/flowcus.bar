@@ -9,8 +9,9 @@
 /* Begin PBXBuildFile section */
 		050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEA20AF43980007E238 /* Assets.xcassets */; };
 		050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */; };
+		050CCEEF20AF643B0007E238 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */; };
+		050CCEF320B318E70007E238 /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEF220B318E70007E238 /* BarViewController.swift */; };
 		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
-		058DA47920AE2439009834D3 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 058DA47820AE2439009834D3 /* StoreKit.framework */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
 		05F4B7F42098C23400D9D5FE /* TODO.md in Resources */ = {isa = PBXBuildFile; fileRef = 05F4B7F32098C23400D9D5FE /* TODO.md */; };
@@ -20,14 +21,16 @@
 		05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */; };
 		05F4B7FE209A64FC00D9D5FE /* MenuState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B7FD209A64FC00D9D5FE /* MenuState.swift */; };
 		05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */; };
+		26E4CFD859C33A32DFC38794 /* Pods_flowcus.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 27DABDAEEB84FF3FEFA8FB17 /* Pods_flowcus.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		050CCEEA20AF43980007E238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+pretty.swift"; sourceTree = "<group>"; };
+		050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
+		050CCEF220B318E70007E238 /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
 		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
-		058DA47820AE2439009834D3 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		05EB952D2094665400A5D76C /* flowcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flowcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		05EB95302094665400A5D76C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		05EB95352094665400A5D76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
@@ -40,6 +43,9 @@
 		05F4B7FB2099F63100D9D5FE /* AppDelegate+Handlers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Handlers.swift"; sourceTree = "<group>"; };
 		05F4B7FD209A64FC00D9D5FE /* MenuState.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuState.swift; sourceTree = "<group>"; };
 		05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AppDelegate+Notifications.swift"; sourceTree = "<group>"; };
+		27DABDAEEB84FF3FEFA8FB17 /* Pods_flowcus.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_flowcus.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2A31382CF5E95E869544243C /* Pods-flowcus.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flowcus.debug.xcconfig"; path = "Pods/Target Support Files/Pods-flowcus/Pods-flowcus.debug.xcconfig"; sourceTree = "<group>"; };
+		EDDE5B6819C218F6BE57D0F6 /* Pods-flowcus.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-flowcus.release.xcconfig"; path = "Pods/Target Support Files/Pods-flowcus/Pods-flowcus.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,7 +53,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				058DA47920AE2439009834D3 /* StoreKit.framework in Frameworks */,
+				26E4CFD859C33A32DFC38794 /* Pods_flowcus.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -57,7 +63,7 @@
 		058DA47720AE2439009834D3 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				058DA47820AE2439009834D3 /* StoreKit.framework */,
+				27DABDAEEB84FF3FEFA8FB17 /* Pods_flowcus.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -68,6 +74,7 @@
 				05EB952F2094665400A5D76C /* flowcus */,
 				05EB952E2094665400A5D76C /* Products */,
 				058DA47720AE2439009834D3 /* Frameworks */,
+				EE241CE4305526CF12E24835 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -97,8 +104,19 @@
 				05F4B7FD209A64FC00D9D5FE /* MenuState.swift */,
 				05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */,
 				050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */,
+				050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */,
+				050CCEF220B318E70007E238 /* BarViewController.swift */,
 			);
 			path = flowcus;
+			sourceTree = "<group>";
+		};
+		EE241CE4305526CF12E24835 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2A31382CF5E95E869544243C /* Pods-flowcus.debug.xcconfig */,
+				EDDE5B6819C218F6BE57D0F6 /* Pods-flowcus.release.xcconfig */,
+			);
+			name = Pods;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -108,6 +126,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 05EB953B2094665400A5D76C /* Build configuration list for PBXNativeTarget "flowcus" */;
 			buildPhases = (
+				360F75E55EC4EAEB9E3FBD4F /* [CP] Check Pods Manifest.lock */,
 				05EB95292094665400A5D76C /* Sources */,
 				05EB952A2094665400A5D76C /* Frameworks */,
 				05EB952B2094665400A5D76C /* Resources */,
@@ -136,7 +155,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.InAppPurchase = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -167,12 +186,34 @@
 			files = (
 				05F4B7F42098C23400D9D5FE /* TODO.md in Resources */,
 				056006A8209524950005A4BD /* ding.m4a in Resources */,
+				050CCEEF20AF643B0007E238 /* GoogleService-Info.plist in Resources */,
 				050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */,
 				05EB95362094665400A5D76C /* MainMenu.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		360F75E55EC4EAEB9E3FBD4F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-flowcus-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		05EB95292094665400A5D76C /* Sources */ = {
@@ -183,6 +224,7 @@
 				05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */,
 				05EB95312094665400A5D76C /* AppDelegate.swift in Sources */,
 				050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */,
+				050CCEF320B318E70007E238 /* BarViewController.swift in Sources */,
 				05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */,
 				05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */,
 				05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */,
@@ -312,9 +354,9 @@
 		};
 		05EB953C2094665400A5D76C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2A31382CF5E95E869544243C /* Pods-flowcus.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
@@ -332,9 +374,9 @@
 		};
 		05EB953D2094665400A5D76C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = EDDE5B6819C218F6BE57D0F6 /* Pods-flowcus.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = flowcus/flowcus.entitlements;
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;

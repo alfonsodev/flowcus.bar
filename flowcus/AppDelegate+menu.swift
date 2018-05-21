@@ -97,7 +97,11 @@ extension AppDelegate {
         menu.setSubmenu(getSoundMenu(), for: menu.item(withTitle: "Sound")!)
 
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Quit", action: #selector(NSApplication.terminate(_:)), keyEquivalent: "q"))
+        menu.addItem(NSMenuItem(title: "Select Screen", action: nil, keyEquivalent: ""))
+        menu.setSubmenu(getScreenMenu(), for: menu.item(withTitle: "Select Screen")!)
+        
+        menu.addItem(NSMenuItem.separator())
+        menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApplication), keyEquivalent: "q"))
         for (index, value) in menu.items.enumerated() {
             value.tag = index
         }
@@ -152,5 +156,42 @@ extension AppDelegate {
         defaultSound?.state = .on
 
         return soundMenu
+    }
+    func screenNames() -> [String] {
+        
+        var names = [String]()
+        var object : io_object_t
+        var serialPortIterator = io_iterator_t()
+        let matching = IOServiceMatching("IODisplayConnect")
+        
+        let kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault,
+                                                      matching,
+                                                      &serialPortIterator)
+        if KERN_SUCCESS == kernResult && serialPortIterator != 0 {
+            repeat {
+                object = IOIteratorNext(serialPortIterator)
+                let info = IODisplayCreateInfoDictionary(object, UInt32(kIODisplayOnlyPreferredName)).takeRetainedValue() as NSDictionary as! [String:AnyObject]
+                if let productName = info["DisplayProductName"] as? [String:String],
+                    let firstKey = Array(productName.keys).first {
+                    names.append(productName[firstKey]!)
+                }
+                
+            } while object != 0
+        }
+        IOObjectRelease(serialPortIterator)
+        return names
+    }
+
+    func getScreenMenu() -> NSMenu {
+        let screenMenu = NSMenu()
+        let screens = screenNames()
+        for screen in screens {
+            let screenItem = NSMenuItem()
+            screenItem.title = screen
+            screenItem.target = self
+            screenItem.action = #selector(changeScreen(sender:))
+            screenMenu.addItem(screenItem)
+        }
+        return screenMenu
     }
 }

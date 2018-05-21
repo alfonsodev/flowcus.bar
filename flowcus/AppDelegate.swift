@@ -8,12 +8,20 @@
 
 import Cocoa
 import AVFoundation
+import AppCenter
+import AppCenterAnalytics
+import AppCenterCrashes
 
 let kBarStateInitial = "initial"
 let kBarStateComplete = "complete"
 let kBarStatePaused = "paused"
 let kBarStateInProgress = "inProgress"
 let barHeight = 3
+
+func coregraphicsReconfiguration(display:CGDirectDisplayID, flags:CGDisplayChangeSummaryFlags, userInfo:UnsafeMutableRawPointer?) -> Void
+{
+    print("Core Graphics Reconfiguration")
+}
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
@@ -56,11 +64,11 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if let build = Bundle.main.infoDictionary?["CFBundleVersion"] as? String {
             self.build = build
         }
-
+        
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        makeWindowTransparentAndAlwaysOnTop()
+        // makeWindowTransparentAndAlwaysOnTop()
         let visibleFrame = NSScreen.main!.visibleFrame
         let frame = NSRect(x: visibleFrame.minX, y: visibleFrame.maxY, width: visibleFrame.width, height:  CGFloat(integerLiteral: barHeight))
         window.setFrame(frame, display: true)
@@ -75,6 +83,16 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         if let button = statusItem.button {
             button.image = NSImage(named:NSImage.Name("f"))
         }
+        
+        CGDisplayRegisterReconfigurationCallback(coregraphicsReconfiguration, nil)
+
+        
+        // appcenter.ms
+        MSAppCenter.start("0922e4fb-d702-4e89-95bf-89cd1dcc8eb8", withServices:[
+            MSAnalytics.self,
+            MSCrashes.self
+        ])
+        MSAnalytics.trackEvent("Open App")
     }
     
   
@@ -102,13 +120,6 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         window.standardWindowButton(.miniaturizeButton)?.isHidden = true
         window?.styleMask.insert(.fullSizeContentView)
         window.ignoresMouseEvents = true
-    }
-
-    func applicationWillTerminate(_ aNotification: Notification) {
-        // Insert code here to tear down your application
-    }
-    @objc func changeVolume(sender: Any) {
-        
     }
     
      func windowWillEnterFullScreen(_ notification: Notification) {
