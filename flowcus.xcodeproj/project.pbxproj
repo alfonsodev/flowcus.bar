@@ -10,7 +10,6 @@
 		050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEA20AF43980007E238 /* Assets.xcassets */; };
 		050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */; };
 		050CCEEF20AF643B0007E238 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */; };
-		050CCEF320B318E70007E238 /* BarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEF220B318E70007E238 /* BarViewController.swift */; };
 		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
@@ -28,7 +27,6 @@
 		050CCEEA20AF43980007E238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+pretty.swift"; sourceTree = "<group>"; };
 		050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
-		050CCEF220B318E70007E238 /* BarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarViewController.swift; sourceTree = "<group>"; };
 		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
 		05EB952D2094665400A5D76C /* flowcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flowcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -105,7 +103,6 @@
 				05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */,
 				050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */,
 				050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */,
-				050CCEF220B318E70007E238 /* BarViewController.swift */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -224,7 +221,6 @@
 				05F4B805209B488D00D9D5FE /* AppDelegate+Notifications.swift in Sources */,
 				05EB95312094665400A5D76C /* AppDelegate.swift in Sources */,
 				050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */,
-				050CCEF320B318E70007E238 /* BarViewController.swift in Sources */,
 				05F4B7FC2099F63100D9D5FE /* AppDelegate+Handlers.swift in Sources */,
 				05F4B7FA2099F5A500D9D5FE /* AppDelegate+menu.swift in Sources */,
 				05F4B7F62098DFC500D9D5FE /* CALayer+PauseAnimation.swift in Sources */,

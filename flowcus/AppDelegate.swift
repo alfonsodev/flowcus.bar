@@ -68,7 +68,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
     }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
-        // makeWindowTransparentAndAlwaysOnTop()
+        makeWindowTransparentAndAlwaysOnTop()
         let visibleFrame = NSScreen.main!.visibleFrame
         let frame = NSRect(x: visibleFrame.minX, y: visibleFrame.maxY, width: visibleFrame.width, height:  CGFloat(integerLiteral: barHeight))
         window.setFrame(frame, display: true)
