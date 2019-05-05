@@ -11,6 +11,7 @@ import AVFoundation
 import AppCenter
 import AppCenterAnalytics
 import AppCenterCrashes
+import Aperture
 
 let kBarStateInitial = "initial"
 let kBarStateComplete = "complete"
@@ -27,6 +28,8 @@ func coregraphicsReconfiguration(display:CGDirectDisplayID, flags:CGDisplayChang
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
     
+    var ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: .main, audioDevice: nil, videoCodec: nil)
+
     var mState = MenuState()
     var player: AVAudioPlayer?
     var timeMenuItems = [NSMenuItem]()
@@ -86,13 +89,13 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         
         CGDisplayRegisterReconfigurationCallback(coregraphicsReconfiguration, nil)
 
-        
+  
         // appcenter.ms
-        MSAppCenter.start("0922e4fb-d702-4e89-95bf-89cd1dcc8eb8", withServices:[
-            MSAnalytics.self,
-            MSCrashes.self
-        ])
-        MSAnalytics.trackEvent("Open App")
+//        MSAppCenter.start("0922e4fb-d702-4e89-95bf-89cd1dcc8eb8", withServices:[
+//            MSAnalytics.self,
+//            MSCrashes.self
+//        ])
+//        MSAnalytics.trackEvent("Open App")
     }
     
   

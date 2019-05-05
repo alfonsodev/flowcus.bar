@@ -8,5 +8,6 @@ target 'flowcus' do
 
   # Pods for flowcus
   pod 'AppCenter'
+  pod 'Aperture'
 
 end

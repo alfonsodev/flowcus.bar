@@ -1,4 +1,5 @@
 PODS:
+  - Aperture (0.2.0)
   - AppCenter (1.6.1):
     - AppCenter/Analytics (= 1.6.1)
     - AppCenter/Crashes (= 1.6.1)
@@ -9,15 +10,18 @@ PODS:
     - AppCenter/Core
 
 DEPENDENCIES:
+  - Aperture
   - AppCenter
 
 SPEC REPOS:
   https://github.com/CocoaPods/Specs.git:
+    - Aperture
     - AppCenter
 
 SPEC CHECKSUMS:
+  Aperture: ccc6c1ce5c82b9a96664dc5aafeab914d1d86fc3
   AppCenter: f9eb653a45cece34549232f295aec05260dfc24f
 
-PODFILE CHECKSUM: 4c8418fa056d67edbdd5296a78045abb8b23604f
+PODFILE CHECKSUM: 26ec1f57eb1e7c47d55d0c2d55f9b00c0fc5835e
 
 COCOAPODS: 1.5.0

@@ -9,13 +9,14 @@
 import Cocoa
 import AVFoundation
 import AppCenterAnalytics
+import Aperture
 
 extension AppDelegate {
-    
+
     @objc func updateMenuTime() {
         return
         // let useTime = resumeTime > 0 ? resumeTime : self.timeStarts
-        if   mState.getBar() == kBarStateInProgress {
+        if  mState.getBar() == kBarStateInProgress {
             let animationLeft = Int(CACurrentMediaTime()) -  self.timeStarts
             let secondsLeft = durationMap[mState.getDuration()]! - animationLeft
             statusItem.menu?.items[0].title = "𝓕lowcus  [\(secondsLeft.toAudioString)]"
@@ -31,6 +32,7 @@ extension AppDelegate {
         if mState.getBar() == kBarStateInProgress {
             timeWhenPaused = Int(CACurrentMediaTime())
             v.layer?.pauseAnimation()
+            ap.pause()
             mState.setBar(bar: kBarStatePaused)
             renderMenu(state: mState.getState())
             timer.invalidate()
@@ -42,6 +44,7 @@ extension AppDelegate {
         } else if mState.getBar() == kBarStatePaused {
             resumeTime = Int(CACurrentMediaTime()) - timeWhenPaused
             v.layer?.resumeAnimation()
+            ap.resume()
             mState.setBar(bar: kBarStateInProgress)
             renderMenu(state: mState.getState())
             MSAnalytics.trackEvent("Resume Bar", withProperties: [
@@ -53,7 +56,7 @@ extension AppDelegate {
     }
 
     @objc func stop() {
-
+        ap.stop()
         if mState.getBar() == kBarStatePaused {
             mState.setBar(bar: kBarStateInitial)
             DispatchQueue.main.async {
@@ -80,7 +83,7 @@ extension AppDelegate {
             "color": barState.color,
         ])
     }
-    
+
     func updateUI(asyncClosure: @escaping (() -> ())) {
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
@@ -92,7 +95,11 @@ extension AppDelegate {
             }, completionHandler:  asyncClosure)
         }
     }
+
+    
     @objc func startRestart() {
+        ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: .main, audioDevice: nil, videoCodec: nil)
+        ap.start()
         mState.setBar(bar: kBarStateInProgress)
         let s = mState.getBar()
         renderMenu(state: mState.getState())
@@ -101,13 +108,14 @@ extension AppDelegate {
         // timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateMenuTime), userInfo: nil, repeats: true)
         timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.updateMenuTime), userInfo: nil, repeats: true)
         RunLoop.main.add(timer, forMode: RunLoopMode.commonModes)
- 
+
         v.frame = NSRect(x: 0, y: 0, width: 0, height: CGFloat(integerLiteral: barHeight))
         v.layer?.backgroundColor = mState.getCGColor(name: mState.getColor())
         let playSoundAndNotify: (() -> ()) = {
             DispatchQueue.main.async {
                 let barState = self.mState.getState()
                 if (barState.bar == kBarStateInProgress) {
+                    self.ap.stop()
                     self.showNotification()
                     self.sound?.volume = 0.7
                     self.sound?.play()
@@ -121,7 +129,6 @@ extension AppDelegate {
                 }
             }
         }
-        
 
         updateUI(asyncClosure: playSoundAndNotify)
         let barState = self.mState.getState()
