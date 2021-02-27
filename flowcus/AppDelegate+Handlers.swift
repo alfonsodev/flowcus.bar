@@ -66,7 +66,7 @@ extension AppDelegate {
         renderMenu(state: mState.getState())
     }
 
-    func updateUI(asyncClosure: @escaping (() -> ())) {
+    func updateUI(asyncClosure: @escaping (() -> Void)) {
         DispatchQueue.main.async {
             NSAnimationContext.runAnimationGroup({ (context: NSAnimationContext!) -> Void in
                 context.timingFunction = CAMediaTimingFunction.init(name: kCAMediaTimingFunctionLinear)
@@ -74,11 +74,10 @@ extension AppDelegate {
                 context.allowsImplicitAnimation = true
                 // context.timingFunction = CAMediaTimingFunction
                 self.v.frame = NSRect(x: 0, y: 0, width: Int((self.window.contentView?.bounds.width)!), height: barHeight)
-            }, completionHandler:  asyncClosure)
+            }, completionHandler: asyncClosure)
         }
     }
 
-    
     @objc func startRestart() {
         let displayId = mState.getSelectedDisplayId()
         ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: displayId, audioDevice: nil, videoCodec: nil)
@@ -93,23 +92,23 @@ extension AppDelegate {
 
         v.frame = NSRect(x: 0, y: 0, width: 0, height: CGFloat(integerLiteral: barHeight))
         v.layer?.backgroundColor = mState.getCGColor(name: mState.getColor())
-        let playSoundAndNotify: (() -> ()) = {
+        let playSoundAndNotify: (() -> Void) = {
             DispatchQueue.main.async {
                 let barState = self.mState.getState()
-                if (barState.bar == kBarStateInProgress) {
+                if barState.bar == kBarStateInProgress {
                     self.ap.stop()
                     self.showNotification()
                     self.sound?.volume = 0.7
                     self.sound?.play()
                     self.mState.setBar(bar: kBarStateComplete)
                     self.renderMenu(state: self.mState.getState())
-                    
+
                 }
             }
         }
 
         updateUI(asyncClosure: playSoundAndNotify)
-       
+
     }
 
     @objc func changeSound(sender: Any) {
@@ -121,7 +120,6 @@ extension AppDelegate {
         mState.setSound(sound: selectedItem.title)
         renderMenu(state: mState.getState())
 
-       
     }
 
     @objc func changeColor(sender: Any) {
@@ -136,15 +134,15 @@ extension AppDelegate {
     @objc func changeDuration(sender: Any) {
         // showNotificationConfirm()
         let selectedItem = (sender as! NSMenuItem)
-        
+
         mState.setDuration(duration: selectedItem.title)
         renderMenu(state: mState.getState())
      }
-    
+
     @objc func quitApplication(sender: Any) {
         NSApp.terminate(nil)
     }
-    
+
     @objc func changeScreen(sender: Any) {
         let selectedItem = (sender as! NSMenuItem)
         mState.selectScreen(title: selectedItem.title)

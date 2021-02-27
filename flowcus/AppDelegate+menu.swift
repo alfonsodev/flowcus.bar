@@ -21,15 +21,13 @@ let durationMap = [
     "45 minutes": 60 * 45,
     "50 minutes": 60 * 50,
     "55 minutes": 60 * 55,
-    "60 minutes": 60 * 60,
+    "60 minutes": 60 * 60
 ]
-
 
 //let mapStateTitle = [
 //    kBarStateInitial: "Start 𝓕lowcus",
 //    kBarStateInProgress: "Restart 𝓕lowcus",
 //]
-
 
 extension AppDelegate {
     func getVolumeItem() {
@@ -41,13 +39,13 @@ extension AppDelegate {
         // volItem.view = slider
         // menu.addItem(volItem)
     }
-    
+
     func getDurationItems(enabled: Bool) -> [NSMenuItem] {
         var items = [NSMenuItem]()
         let sortedMap = durationMap.sorted { $0.value < $1.value }
         for element in sortedMap {
             let i = NSMenuItem(title: element.key, action: #selector(changeDuration(sender:)), keyEquivalent: "")
-            if (!enabled) {
+            if !enabled {
                 i.isEnabled = false
                 i.action = nil
             }
@@ -56,7 +54,7 @@ extension AppDelegate {
         return items
     }
 
-    func controlMenu(state: String)-> [NSMenuItem] {
+    func controlMenu(state: String) -> [NSMenuItem] {
         switch state {
         case kBarStateInProgress:
             return [
@@ -72,9 +70,7 @@ extension AppDelegate {
             return [ NSMenuItem(title: "Start", action: #selector(startRestart), keyEquivalent: "R") ]
         }
     }
-    
-    
-     
+
     func renderMenu(state: menuState) {
         let menu = NSMenu()
         menu.removeAllItems()
@@ -103,11 +99,11 @@ extension AppDelegate {
 
         // Capture Screen Selector
         let screenMenu = getScreenMenu()
-        
+
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Capture Screen", action: nil, keyEquivalent: ""))
         menu.setSubmenu(screenMenu, for: menu.item(withTitle: "Capture Screen")!)
-        
+
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApplication), keyEquivalent: "q"))
         for (index, value) in menu.items.enumerated() {
@@ -116,7 +112,7 @@ extension AppDelegate {
 
         // submenu Color
         // colorMenu.autoenablesItems = false
-        let colorTitles = ["Blue","Dark", "Red", "Green", "Yellow", "Purple"]
+        let colorTitles = ["Blue", "Dark", "Red", "Green", "Yellow", "Purple"]
         for title in colorTitles {
             let item = NSMenuItem()
             item.title = title
@@ -125,7 +121,7 @@ extension AppDelegate {
             item.image = NSImage(named: NSImage.Name(rawValue: title.lowercased()))
             colorMenu.addItem(item)
         }
-        
+
         colorMenu.item(withTitle: state.color)?.state = .on
         let colorItem = menu.item(withTitle: "Color")
         menu.item(withTitle: state.duration)?.state = .on
@@ -133,7 +129,6 @@ extension AppDelegate {
         menu.setSubmenu(colorMenu, for: colorItem!)
         statusItem.menu = menu
     }
-    
 
     func getSoundMenu() -> NSMenu {
         let soundMenu = NSMenu()
@@ -151,7 +146,7 @@ extension AppDelegate {
                            "Sosumi",
                            "Submarine",
                            "Tink"]
-        
+
         for sound in soundsNames {
             let soundItem = NSMenuItem()
             soundItem.title = sound
@@ -165,8 +160,6 @@ extension AppDelegate {
 
         return soundMenu
     }
-    
-
 
     func getScreenMenu() -> NSMenu {
         let screenMenu = NSMenu()
@@ -176,7 +169,7 @@ extension AppDelegate {
             screenItem.title = screen.name
             screenItem.target = self
             screenItem.action = #selector(changeScreen(sender:))
-            if (screen.selected) {
+            if screen.selected {
                 screenItem.state = .on
             }
             screenMenu.addItem(screenItem)

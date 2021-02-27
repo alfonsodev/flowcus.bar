@@ -17,14 +17,13 @@
 import Cocoa
 
 extension CALayer {
-    
+
     func pauseAnimation() {
         let pauseTime = self.convertTime(CACurrentMediaTime(), from: nil)
         self.speed = 0.0
         self.timeOffset = pauseTime
     }
-    
-    
+
     func resumeAnimation() {
         let pauseTime = self.timeOffset
         self.speed = 1.0

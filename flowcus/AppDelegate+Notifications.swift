@@ -9,7 +9,7 @@
 import Cocoa
 extension AppDelegate {
 
-    func showNotification() -> Void {
+    func showNotification() {
         let notification = NSUserNotification()
         notification.title = "𝓕lowcus."
         notification.subtitle = "✅ Complete"
@@ -17,19 +17,18 @@ extension AppDelegate {
         NSUserNotificationCenter.default.deliver(notification)
     }
 
-
-    func showNotificationConfirm() -> Void {
+    func showNotificationConfirm() {
         let notification = NSUserNotification()
         notification.title = "𝓕lowcus."
         notification.subtitle = "What are you gonna do ?"
         notification.hasActionButton = true
         notification.hasReplyButton = true
         notification.actionButtonTitle = "cancel"
-        
+
         NSUserNotificationCenter.default.delegate = self as NSUserNotificationCenterDelegate
         NSUserNotificationCenter.default.deliver(notification)
     }
-    
+
     func userNotificationCenter(_ center: NSUserNotificationCenter, didDeliver notification: NSUserNotification) {
         // print(notification.response)
     }

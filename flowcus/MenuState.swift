@@ -50,7 +50,7 @@ func getDisplayData() -> [HardwareDisplay] {
             name = "Built in"
         } else {
             name = getScreenNameBySerialName(CGDisplaySerialNumber(currentDisplayId)) ?? "External display"
-            if (CGMainDisplayID() == currentDisplayId) {
+            if CGMainDisplayID() == currentDisplayId {
                 name = name + " (Primary)"
             }
         }
@@ -78,7 +78,7 @@ func getScreenNameBySerialName(_ serial: UInt32) -> String? {
                 .takeRetainedValue() as NSDictionary as! [String: AnyObject]
             print(kDisplayVendorID)
             print(kDisplayProductID)
-            if let productName = info["DisplayProductName"] as? [String :String],
+            if let productName = info["DisplayProductName"] as? [String: String],
                 let firstKey = Array(productName.keys).first {
                 print("Serial: ", serial, " DSN: ", info["DisplaySerialNumber"] as? UInt32)
                  if info["DisplaySerialNumber"] as? UInt32 == serial {
@@ -154,7 +154,7 @@ class MenuState {
             "Dark": NSColor.init(red: (28/255), green: (28/255), blue: (30/255), alpha: 1).cgColor,
             "Red": NSColor.init(red: 1, green: (59/255), blue: (48/255), alpha: 1).cgColor,
             "Yellow": NSColor.init(red: (255/255), green: (204/255), blue: (0/255), alpha: 1).cgColor,
-            "Purple": NSColor.init(red: (175/255), green: (82/255), blue: (222/255), alpha: 1).cgColor,
+            "Purple": NSColor.init(red: (175/255), green: (82/255), blue: (222/255), alpha: 1).cgColor
         ]
         return colors[name, default: defaultColor]
     }
