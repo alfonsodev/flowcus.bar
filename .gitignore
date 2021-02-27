@@ -2,3 +2,5 @@ build/
 GoogleService-Info.plist
 Pods
 dist/
+UserInterfaceState.xcuserstate
+.DS_Store

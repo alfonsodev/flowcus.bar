@@ -8,7 +8,6 @@
 
 import Cocoa
 import AVFoundation
-import AppCenterAnalytics
 import Aperture
 
 extension AppDelegate {
@@ -28,7 +27,6 @@ extension AppDelegate {
     }
     // When pressing on pause/resume from the menu
     @objc func pauseResume() {
-        let barState = mState.getState()
         if mState.getBar() == kBarStateInProgress {
             timeWhenPaused = Int(CACurrentMediaTime())
             v.layer?.pauseAnimation()
@@ -36,22 +34,12 @@ extension AppDelegate {
             mState.setBar(bar: kBarStatePaused)
             renderMenu(state: mState.getState())
             timer.invalidate()
-            MSAnalytics.trackEvent("Pause Bar", withProperties: [
-                "duration": barState.duration,
-                "sound": barState.sound,
-                "color": barState.color,
-            ])
         } else if mState.getBar() == kBarStatePaused {
             resumeTime = Int(CACurrentMediaTime()) - timeWhenPaused
             v.layer?.resumeAnimation()
             ap.resume()
             mState.setBar(bar: kBarStateInProgress)
             renderMenu(state: mState.getState())
-            MSAnalytics.trackEvent("Resume Bar", withProperties: [
-                "duration": barState.duration,
-                "sound": barState.sound,
-                "color": barState.color,
-            ])
         }
     }
 
@@ -76,12 +64,6 @@ extension AppDelegate {
             }
         }
         renderMenu(state: mState.getState())
-        let barState = mState.getState()
-        MSAnalytics.trackEvent("Stop Bar", withProperties: [
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "color": barState.color,
-        ])
     }
 
     func updateUI(asyncClosure: @escaping (() -> ())) {
@@ -98,10 +80,10 @@ extension AppDelegate {
 
     
     @objc func startRestart() {
-        ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: .main, audioDevice: nil, videoCodec: nil)
+        let displayId = mState.getSelectedDisplayId()
+        ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: displayId, audioDevice: nil, videoCodec: nil)
         ap.start()
         mState.setBar(bar: kBarStateInProgress)
-        let s = mState.getBar()
         renderMenu(state: mState.getState())
         timeStarts = Int(CACurrentMediaTime())
         resumeTime = 0
@@ -121,26 +103,16 @@ extension AppDelegate {
                     self.sound?.play()
                     self.mState.setBar(bar: kBarStateComplete)
                     self.renderMenu(state: self.mState.getState())
-                    MSAnalytics.trackEvent("Complete Bar", withProperties: [
-                        "duration": barState.duration,
-                        "sound": barState.sound,
-                        "color": barState.color,
-                    ])
+                    
                 }
             }
         }
 
         updateUI(asyncClosure: playSoundAndNotify)
-        let barState = self.mState.getState()
-        MSAnalytics.trackEvent("Start Bar", withProperties: [
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "color": barState.color,
-        ])
+       
     }
 
     @objc func changeSound(sender: Any) {
-        let prevBarState = self.mState.getState()
         let selectedItem = (sender as! NSMenuItem)
         let selectedSound = NSSound(named: NSSound.Name(rawValue: selectedItem.title))
         selectedSound?.volume = 0.5
@@ -148,61 +120,34 @@ extension AppDelegate {
         sound = selectedSound
         mState.setSound(sound: selectedItem.title)
         renderMenu(state: mState.getState())
-        let barState = self.mState.getState()
-        MSAnalytics.trackEvent("Change Sound", withProperties: [
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "prev sound": prevBarState.sound,
-            "color": barState.color,
-        ])
+
+       
     }
 
     @objc func changeColor(sender: Any) {
-        let prevBarState = self.mState.getState()
         let selectedColorTitle = (sender as! NSMenuItem).title
         mState.setColor(color: selectedColorTitle)
         renderMenu(state: mState.getState())
 
         v.layer?.backgroundColor = mState.getCGColor(name: selectedColorTitle)
-        let barState = self.mState.getState()
-        MSAnalytics.trackEvent("Change Color", withProperties: [
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "prev color": prevBarState.color,
-            "color": barState.color,
-        ])
 
     }
 
     @objc func changeDuration(sender: Any) {
         // showNotificationConfirm()
-        let prevBarState = self.mState.getState()
         let selectedItem = (sender as! NSMenuItem)
         
         mState.setDuration(duration: selectedItem.title)
         renderMenu(state: mState.getState())
-        let barState = self.mState.getState()
-        MSAnalytics.trackEvent("Change Duration", withProperties: [
-            "prev duration": prevBarState.duration,
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "color": barState.color,
-        ])
-
      }
+    
     @objc func quitApplication(sender: Any) {
-        let barState = self.mState.getState()
-        MSAnalytics.trackEvent("Quit Application", withProperties: [
-            "duration": barState.duration,
-            "sound": barState.sound,
-            "color": barState.color,
-            "bar": barState.bar,
-        ])
         NSApp.terminate(nil)
     }
     
     @objc func changeScreen(sender: Any) {
         let selectedItem = (sender as! NSMenuItem)
-        print(selectedItem.title)
+        mState.selectScreen(title: selectedItem.title)
+        renderMenu(state: mState.getState())
     }
 }

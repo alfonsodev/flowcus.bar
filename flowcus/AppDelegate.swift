@@ -8,9 +8,6 @@
 
 import Cocoa
 import AVFoundation
-import AppCenter
-import AppCenterAnalytics
-import AppCenterCrashes
 import Aperture
 
 let kBarStateInitial = "initial"

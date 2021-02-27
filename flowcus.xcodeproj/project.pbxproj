@@ -9,7 +9,6 @@
 /* Begin PBXBuildFile section */
 		050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEA20AF43980007E238 /* Assets.xcassets */; };
 		050CCEED20AF51BF0007E238 /* Bundle+pretty.swift in Sources */ = {isa = PBXBuildFile; fileRef = 050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */; };
-		050CCEEF20AF643B0007E238 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */; };
 		056006A8209524950005A4BD /* ding.m4a in Resources */ = {isa = PBXBuildFile; fileRef = 056006A7209524950005A4BD /* ding.m4a */; };
 		05EB95312094665400A5D76C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 05EB95302094665400A5D76C /* AppDelegate.swift */; };
 		05EB95362094665400A5D76C /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 05EB95342094665400A5D76C /* MainMenu.xib */; };
@@ -26,7 +25,6 @@
 /* Begin PBXFileReference section */
 		050CCEEA20AF43980007E238 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+pretty.swift"; sourceTree = "<group>"; };
-		050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
 		056006A520950F520005A4BD /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		056006A7209524950005A4BD /* ding.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = ding.m4a; sourceTree = "<group>"; };
 		05EB952D2094665400A5D76C /* flowcus.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = flowcus.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -34,6 +32,7 @@
 		05EB95352094665400A5D76C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/MainMenu.xib; sourceTree = "<group>"; };
 		05EB95372094665400A5D76C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		05EB95382094665400A5D76C /* flowcus.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = flowcus.entitlements; sourceTree = "<group>"; };
+		05F2122D25E8318600B8376B /* README.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		05F4B7F32098C23400D9D5FE /* TODO.md */ = {isa = PBXFileReference; lastKnownFileType = net.daringfireball.markdown; path = TODO.md; sourceTree = "<group>"; };
 		05F4B7F52098DFC500D9D5FE /* CALayer+PauseAnimation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CALayer+PauseAnimation.swift"; sourceTree = "<group>"; };
 		05F4B7F72099AAAE00D9D5FE /* Int+format.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Int+format.swift"; sourceTree = "<group>"; };
@@ -69,6 +68,7 @@
 		05EB95242094665400A5D76C = {
 			isa = PBXGroup;
 			children = (
+				05F2122D25E8318600B8376B /* README.md */,
 				05EB952F2094665400A5D76C /* flowcus */,
 				05EB952E2094665400A5D76C /* Products */,
 				058DA47720AE2439009834D3 /* Frameworks */,
@@ -102,7 +102,6 @@
 				05F4B7FD209A64FC00D9D5FE /* MenuState.swift */,
 				05F4B804209B488D00D9D5FE /* AppDelegate+Notifications.swift */,
 				050CCEEC20AF51BF0007E238 /* Bundle+pretty.swift */,
-				050CCEEE20AF643A0007E238 /* GoogleService-Info.plist */,
 			);
 			path = flowcus;
 			sourceTree = "<group>";
@@ -184,7 +183,6 @@
 			files = (
 				05F4B7F42098C23400D9D5FE /* TODO.md in Resources */,
 				056006A8209524950005A4BD /* ding.m4a in Resources */,
-				050CCEEF20AF643B0007E238 /* GoogleService-Info.plist in Resources */,
 				050CCEEB20AF43980007E238 /* Assets.xcassets in Resources */,
 				05EB95362094665400A5D76C /* MainMenu.xib in Resources */,
 			);
@@ -217,7 +215,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-flowcus/Pods-flowcus-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-flowcus/Pods-flowcus-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Aperture/Aperture.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -226,7 +224,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-flowcus/Pods-flowcus-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-flowcus/Pods-flowcus-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -375,10 +373,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 42PA7UX36R;
+				DEVELOPMENT_TEAM = 29F3MVTSX5;
 				INFOPLIST_FILE = flowcus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.2.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codefulness.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -395,10 +394,11 @@
 				CODE_SIGN_IDENTITY = "Mac Developer";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = 42PA7UX36R;
+				DEVELOPMENT_TEAM = 29F3MVTSX5;
 				INFOPLIST_FILE = flowcus/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				MACOSX_DEPLOYMENT_TARGET = 10.12;
+				MARKETING_VERSION = 1.2.24;
 				PRODUCT_BUNDLE_IDENTIFIER = com.codefulness.flowcus;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";

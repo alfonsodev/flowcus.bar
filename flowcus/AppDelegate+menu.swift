@@ -7,23 +7,28 @@
 //
 
 import Cocoa
-import AVFoundation
 
 let durationMap = [
     "1 minute": 60 * 1,
     "5 minutes": 60 * 5,
     "10 minutes": 60 * 10,
+    "15 minutes": 60 * 15,
     "20 minutes": 60 * 20,
+    "25 minutes": 60 * 25,
     "30 minutes": 60 * 30,
+    "35 minutes": 60 * 35,
     "40 minutes": 60 * 40,
-    "1 hour": 60 * 60,
+    "45 minutes": 60 * 45,
+    "50 minutes": 60 * 50,
+    "55 minutes": 60 * 55,
+    "60 minutes": 60 * 60,
 ]
 
 
-let mapStateTitle = [
-    kBarStateInitial: "Start 𝓕lowcus",
-    kBarStateInProgress: "Restart 𝓕lowcus",
-]
+//let mapStateTitle = [
+//    kBarStateInitial: "Start 𝓕lowcus",
+//    kBarStateInProgress: "Restart 𝓕lowcus",
+//]
 
 
 extension AppDelegate {
@@ -90,15 +95,18 @@ extension AppDelegate {
         for item in durationItems {
             menu.addItem(item)
         }
-        
+        // Color selector
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Color", action: #selector(changeDuration), keyEquivalent: "c"))
         menu.addItem(NSMenuItem(title: "Sound", action: nil, keyEquivalent: "S"))
         menu.setSubmenu(getSoundMenu(), for: menu.item(withTitle: "Sound")!)
 
+        // Capture Screen Selector
+        let screenMenu = getScreenMenu()
+        
         menu.addItem(NSMenuItem.separator())
-        menu.addItem(NSMenuItem(title: "Select Screen", action: nil, keyEquivalent: ""))
-        menu.setSubmenu(getScreenMenu(), for: menu.item(withTitle: "Select Screen")!)
+        menu.addItem(NSMenuItem(title: "Capture Screen", action: nil, keyEquivalent: ""))
+        menu.setSubmenu(screenMenu, for: menu.item(withTitle: "Capture Screen")!)
         
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApplication), keyEquivalent: "q"))
@@ -108,7 +116,7 @@ extension AppDelegate {
 
         // submenu Color
         // colorMenu.autoenablesItems = false
-        let colorTitles = ["Dark", "Red", "Green", "Yellow", "Purple"]
+        let colorTitles = ["Blue","Dark", "Red", "Green", "Yellow", "Purple"]
         for title in colorTitles {
             let item = NSMenuItem()
             item.title = title
@@ -157,39 +165,20 @@ extension AppDelegate {
 
         return soundMenu
     }
-    func screenNames() -> [String] {
-        
-        var names = [String]()
-        var object : io_object_t
-        var serialPortIterator = io_iterator_t()
-        let matching = IOServiceMatching("IODisplayConnect")
-        
-        let kernResult = IOServiceGetMatchingServices(kIOMasterPortDefault,
-                                                      matching,
-                                                      &serialPortIterator)
-        if KERN_SUCCESS == kernResult && serialPortIterator != 0 {
-            repeat {
-                object = IOIteratorNext(serialPortIterator)
-                let info = IODisplayCreateInfoDictionary(object, UInt32(kIODisplayOnlyPreferredName)).takeRetainedValue() as NSDictionary as! [String:AnyObject]
-                if let productName = info["DisplayProductName"] as? [String:String],
-                    let firstKey = Array(productName.keys).first {
-                    names.append(productName[firstKey]!)
-                }
-                
-            } while object != 0
-        }
-        IOObjectRelease(serialPortIterator)
-        return names
-    }
+    
+
 
     func getScreenMenu() -> NSMenu {
         let screenMenu = NSMenu()
-        let screens = screenNames()
+        let screens = mState.getScreen()
         for screen in screens {
             let screenItem = NSMenuItem()
-            screenItem.title = screen
+            screenItem.title = screen.name
             screenItem.target = self
             screenItem.action = #selector(changeScreen(sender:))
+            if (screen.selected) {
+                screenItem.state = .on
+            }
             screenMenu.addItem(screenItem)
         }
         return screenMenu

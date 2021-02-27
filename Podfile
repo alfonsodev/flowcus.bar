@@ -7,7 +7,6 @@ target 'flowcus' do
   platform :osx, '10.12'
 
   # Pods for flowcus
-  pod 'AppCenter'
   pod 'Aperture'
 
 end
