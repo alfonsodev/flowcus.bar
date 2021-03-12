@@ -19,12 +19,24 @@ let barHeight = 3
 func coregraphicsReconfiguration(display: CGDirectDisplayID, flags: CGDisplayChangeSummaryFlags, userInfo: UnsafeMutableRawPointer?) {
     print("Core Graphics Reconfiguration")
 }
-
+func getDestination() -> String {
+    let homeDir = FileManager.default.homeDirectoryForCurrentUser
+    let path = "Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4"
+    return homeDir.appendingPathComponent(path).path
+}
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDelegate, NSWindowDelegate {
     @IBOutlet weak var window: NSWindow!
 
-    var ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: .main, audioDevice: nil, videoCodec: nil)
+    var ap = try! Aperture(
+        destination: URL(fileURLWithPath: getDestination()),
+        framesPerSecond: 25,
+        cropRect: nil,
+        showCursor: true,
+        highlightClicks: false,
+        screenId: .main,
+        audioDevice: nil,
+        videoCodec: nil)
 
     var mState = MenuState()
     var player: AVAudioPlayer?
@@ -65,6 +77,12 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         }
 
     }
+    
+    func setStatusItemIcon () {
+        if let button = statusItem.button {
+            button.image = NSImage(named: NSImage.Name("f"))
+        }
+    }
 
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         makeWindowTransparentAndAlwaysOnTop()
@@ -78,10 +96,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         NSApplication.shared.activate(ignoringOtherApps: true)
         window.contentView?.addSubview(v)
         renderMenu(state: mState.getState())
-
-        if let button = statusItem.button {
-            button.image = NSImage(named: NSImage.Name("f"))
-        }
+        setStatusItemIcon()
 
         CGDisplayRegisterReconfigurationCallback(coregraphicsReconfiguration, nil)
 

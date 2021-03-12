@@ -80,8 +80,11 @@ extension AppDelegate {
 
     @objc func startRestart() {
         let displayId = mState.getSelectedDisplayId()
-        ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Desktop/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: displayId, audioDevice: nil, videoCodec: nil)
-        ap.start()
+        let selectedAudioDevice = mState.getSelectedAudioId()
+        if (displayId != nil) {
+            ap = try! Aperture(destination: URL(fileURLWithPath: FileManager.default.homeDirectoryForCurrentUser.appendingPathComponent("Movies/" + String(NSDate().timeIntervalSince1970) + ".mp4").path), framesPerSecond: 25, cropRect: nil, showCursor: true, highlightClicks: false, screenId: displayId!, audioDevice: selectedAudioDevice, videoCodec: nil)
+            ap.start()
+        }
         mState.setBar(bar: kBarStateInProgress)
         renderMenu(state: mState.getState())
         timeStarts = Int(CACurrentMediaTime())
@@ -148,4 +151,11 @@ extension AppDelegate {
         mState.selectScreen(title: selectedItem.title)
         renderMenu(state: mState.getState())
     }
+    
+    @objc func changeAudio(sender: Any) {
+        let selectedItem = (sender as! NSMenuItem)
+        mState.selectAudio(uid: selectedItem.representedObject as! String)
+        renderMenu(state: mState.getState())
+    }
 }
+

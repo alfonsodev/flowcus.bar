@@ -80,7 +80,6 @@ func getScreenNameBySerialName(_ serial: UInt32) -> String? {
             print(kDisplayProductID)
             if let productName = info["DisplayProductName"] as? [String: String],
                 let firstKey = Array(productName.keys).first {
-                print("Serial: ", serial, " DSN: ", info["DisplaySerialNumber"] as? UInt32)
                  if info["DisplaySerialNumber"] as? UInt32 == serial {
                     IOObjectRelease(serialPortIterator)
                      return productName[firstKey]!
@@ -92,20 +91,36 @@ func getScreenNameBySerialName(_ serial: UInt32) -> String? {
     return nil
 }
 
-func getScreenOptions() -> [Option] {
-    var options: [Option] = []
+func getScreenOptions() -> [VideoOption] {
+    var options: [VideoOption] = []
     let displayData = getDisplayData()
     for data in displayData {
-        options.append(Option(name: data.name, selected: false, displayID: data.displayId))
+        options.append(VideoOption(name: data.name, selected: false, displayID: data.displayId))
     }
-    options[0].selected = true
+
     return options
 }
 
-struct Option {
+func getAudioOptions() -> [AudioOption] {
+    var options: [AudioOption] = []
+    let audioDevices = AudioDeviceFinder.findDevices()
+    for device in audioDevices ?? [] {
+        options.append(AudioOption(name: device.name ?? "", selected: false, deviceId: device.uid ?? ""))
+    }
+
+    return options
+}
+
+struct VideoOption {
     var name: String
     var selected: Bool
     var displayID: CGDirectDisplayID
+}
+
+struct AudioOption {
+    var name: String
+    var selected: Bool
+    var deviceId: String
 }
 
 struct menuState {
@@ -113,11 +128,12 @@ struct menuState {
     var duration: String = "20 minutes"
     var sound: String = "Purr"
     var color: String = "Dark"
-    var screen: [Option]
+    var screen: [VideoOption]
+    var audio: [AudioOption]
 }
 
 class MenuState {
-    var state = menuState(screen: getScreenOptions())
+    var state = menuState(screen: getScreenOptions(), audio: getAudioOptions())
     var defaults = UserDefaults.init(suiteName: "Flowcus")
     init() {
         state.bar = kBarStateInitial
@@ -147,14 +163,17 @@ class MenuState {
     // https://developer.apple.com/design/human-interface-guidelines/ios/visual-design/color/
     // and convert by dividing by 255
     func getCGColor(name: String) -> CGColor {
-        let defaultColor = NSColor.init(red: (52/255), green: (199/255), blue: (89/255), alpha: 1).cgColor
+        let defaultColor = NSColor.init(red: 0, green: (122/255), blue: 1, alpha: 1.0).cgColor
         let colors = [
-            "Green": defaultColor,
-            "Blue": NSColor.init(red: 0, green: (122/255), blue: 1, alpha: 1.0).cgColor,
-            "Dark": NSColor.init(red: (28/255), green: (28/255), blue: (30/255), alpha: 1).cgColor,
+            "Blue": defaultColor,
+            "Green":  NSColor.init(red: (52/255), green: (199/255), blue: (89/255), alpha: 1).cgColor,
+            "Indigo":NSColor.init(red: (88/255), green: (85/255), blue: (214/255), alpha: 1).cgColor,
+            "Orange":NSColor.init(red: (255/255), green: (149/255), blue: (0/255), alpha: 1).cgColor,
+            "Pink": NSColor.init(red: (255/255), green: (45/255), blue: (85/255), alpha: 1).cgColor,
+            "Purple": NSColor.init(red: (175/255), green: (82/255), blue: (222/255), alpha: 1).cgColor,
             "Red": NSColor.init(red: 1, green: (59/255), blue: (48/255), alpha: 1).cgColor,
-            "Yellow": NSColor.init(red: (255/255), green: (204/255), blue: (0/255), alpha: 1).cgColor,
-            "Purple": NSColor.init(red: (175/255), green: (82/255), blue: (222/255), alpha: 1).cgColor
+            "Teal": NSColor.init(red: (90/255), green: (200/255), blue: (250/255), alpha: 1).cgColor,
+            "Yellow": NSColor.init(red: (255/255), green: (204/255), blue: (0/255), alpha: 1).cgColor
         ]
         return colors[name, default: defaultColor]
     }
@@ -182,23 +201,46 @@ class MenuState {
         return state
     }
 
-    func getScreen() -> [Option] {
+    func getScreen() -> [VideoOption] {
         return state.screen
     }
 
+    func getAudioDevices() -> [AudioOption] {
+        return state.audio
+    }
     func selectScreen(title: String) {
+        var selectedName = ""
+        for option in state.screen where option.selected {
+            selectedName = option.name
+        }
         for index in 0 ..< state.screen.count {
             state.screen[index].selected = false
             if state.screen[index].name == title {
-                state.screen[index].selected = true
+                state.screen[index].selected = selectedName != title
+            }
+        }
+    }
+    
+    func selectAudio(uid: String) {
+        for index in 0 ..< state.audio.count {
+            state.audio[index].selected = false
+            if state.audio[index].deviceId == uid {
+                state.audio[index].selected = true
             }
         }
     }
 
-    func getSelectedDisplayId() -> CGDirectDisplayID {
+    func getSelectedDisplayId() -> CGDirectDisplayID? {
         for option in state.screen where option.selected {
             return option.displayID
         }
-        return CGDirectDisplayID.main
+        return nil
+    }
+    
+    func getSelectedAudioId() ->  AVCaptureDevice? {
+        for option in state.audio where option.selected {
+            return AVCaptureDevice.init(uniqueID: option.deviceId)
+        }
+        return nil
     }
 }

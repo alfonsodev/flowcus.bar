@@ -75,19 +75,22 @@ extension AppDelegate {
         let menu = NSMenu()
         menu.removeAllItems()
         let colorMenu = NSMenu()
-        menu.addItem(NSMenuItem(title: "𝓕lowcus \(Bundle.main.releaseVersionNumberPretty)", action: nil, keyEquivalent: ""))
+        menu.addItem(NSMenuItem(
+            title: "Flowcus \(Bundle.main.releaseVersionNumberPretty)",
+            action: nil,
+            keyEquivalent: ""
+        ))
         menu.addItem(NSMenuItem.separator())
 
         let controlItems = controlMenu(state: state.bar)
         for cItem in controlItems {
             menu.addItem(cItem)
         }
-        // menu.addItem(NSMenuItem(title: "\(durations[selectedDurationIndex].toAudioString) left", action:nil, keyEquivalent: ""))
-        // menu.addItem(NSMenuItem(title: "Stop", action: nil, keyEquivalent: ""))
+
         let barState = mState.getState().bar
-        let enableMenu = barState == kBarStateComplete || barState == kBarStateInitial
+        let inProgress = barState == kBarStateComplete || barState == kBarStateInitial
         menu.addItem(NSMenuItem.separator())
-        let durationItems = getDurationItems(enabled: enableMenu)
+        let durationItems = getDurationItems(enabled: inProgress)
         for item in durationItems {
             menu.addItem(item)
         }
@@ -98,21 +101,25 @@ extension AppDelegate {
         menu.setSubmenu(getSoundMenu(), for: menu.item(withTitle: "Sound")!)
 
         // Capture Screen Selector
-        let screenMenu = getScreenMenu()
-
+        let screenMenu = getScreenMenu(enabled: inProgress)
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Capture Screen", action: nil, keyEquivalent: ""))
         menu.setSubmenu(screenMenu, for: menu.item(withTitle: "Capture Screen")!)
+
+        // Capture Audio selector
+        let audioMenu = getAudioMenu(enabled: inProgress)
+        menu.addItem(NSMenuItem(title: "Audio device", action: nil, keyEquivalent: ""))
+        menu.setSubmenu(audioMenu, for: menu.item(withTitle: "Audio device")!)
 
         menu.addItem(NSMenuItem.separator())
         menu.addItem(NSMenuItem(title: "Quit", action: #selector(quitApplication), keyEquivalent: "q"))
         for (index, value) in menu.items.enumerated() {
             value.tag = index
         }
-
-        // submenu Color
+        
+        // Submenu Color
         // colorMenu.autoenablesItems = false
-        let colorTitles = ["Blue", "Dark", "Red", "Green", "Yellow", "Purple"]
+        let colorTitles = ["Blue", "Green", "Indigo", "Orange", "Pink", "Purple", "Red", "Teal", "Yellow"]
         for title in colorTitles {
             let item = NSMenuItem()
             item.title = title
@@ -161,19 +168,48 @@ extension AppDelegate {
         return soundMenu
     }
 
-    func getScreenMenu() -> NSMenu {
+    func getScreenMenu(enabled: Bool) -> NSMenu {
         let screenMenu = NSMenu()
         let screens = mState.getScreen()
         for screen in screens {
             let screenItem = NSMenuItem()
             screenItem.title = screen.name
+            screenItem.isEnabled = enabled
             screenItem.target = self
-            screenItem.action = #selector(changeScreen(sender:))
+            if !enabled {
+                screenItem.action = nil
+            } else {
+                screenItem.action = #selector(changeScreen(sender:))
+            }
             if screen.selected {
                 screenItem.state = .on
             }
             screenMenu.addItem(screenItem)
         }
         return screenMenu
+    }
+    
+    func getAudioMenu(enabled: Bool) -> NSMenu {
+        let audioMenu = NSMenu()
+        let audioDevices = mState.getAudioDevices()
+        for device in audioDevices {
+            let audioItem = NSMenuItem()
+            audioItem.target = self
+            audioItem.isEnabled = enabled
+            if !enabled {
+                audioItem.action = nil
+            } else {
+                audioItem.action = #selector(changeAudio(sender:))
+            }
+            
+            audioItem.representedObject = device.deviceId
+            audioItem.title = device.name
+            if device.selected {
+                audioItem.state = .on
+            }
+            audioMenu.addItem(audioItem)
+        }
+        
+        return audioMenu
     }
 }
