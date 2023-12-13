@@ -13,7 +13,7 @@ import Aperture
 extension AppDelegate {
 
     @objc func updateMenuTime() {
-        return
+//        return
         // let useTime = resumeTime > 0 ? resumeTime : self.timeStarts
         if  mState.getBar() == kBarStateInProgress {
             let animationLeft = Int(CACurrentMediaTime()) -  self.timeStarts
@@ -105,7 +105,6 @@ extension AppDelegate {
                     self.sound?.play()
                     self.mState.setBar(bar: kBarStateComplete)
                     self.renderMenu(state: self.mState.getState())
-
                 }
             }
         }

@@ -9,6 +9,7 @@
 import Cocoa
 import AVFoundation
 import Aperture
+import Swifter
 
 let kBarStateInitial = "initial"
 let kBarStateComplete = "complete"
@@ -83,7 +84,22 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
             button.image = NSImage(named: NSImage.Name("f"))
         }
     }
-
+    
+    func startHttpServer () {
+        do {
+        let server = HttpServer()
+            server["/hello"] = { [self] in
+            print("here we can do our thing");
+            startRestart()
+            return .ok(.htmlBody("You asked for \($0)"))
+        }
+            try server.start(8080, forceIPv4: false, priority: DispatchQoS.QoSClass.userInteractive)
+            print("server started!")
+        } catch  {
+            print("failed to start ")
+        }
+    }
+    
     func applicationDidFinishLaunching(_ aNotification: Notification) {
         makeWindowTransparentAndAlwaysOnTop()
         let visibleFrame = NSScreen.main!.visibleFrame
@@ -97,7 +113,7 @@ class AppDelegate: NSObject, NSApplicationDelegate, NSUserNotificationCenterDele
         window.contentView?.addSubview(v)
         renderMenu(state: mState.getState())
         setStatusItemIcon()
-
+        startHttpServer()
         CGDisplayRegisterReconfigurationCallback(coregraphicsReconfiguration, nil)
 
         // appcenter.ms
