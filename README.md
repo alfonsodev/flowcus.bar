@@ -14,6 +14,7 @@ You can **download** it from releases folder, or this link to the [latest versio
 - Set duration time.
 - Customise color and finish sound.
 - Capture video screen recording.
+  - mp4 files saved to ~/Movies
 ## Screenshots
 <img width="515" alt="Screenshot 2023-12-14 at 10 24 59" src="https://github.com/indiedevai/flowcus.bar/assets/2131194/4019c8b9-b5fe-4ec1-9a59-786cc7167b7a">
 <img width="732" alt="Screenshot 2023-12-14 at 10 33 33" src="https://github.com/indiedevai/flowcus.bar/assets/2131194/e81fcbdf-2c0a-402a-a26c-6a0cc41b48c5">
