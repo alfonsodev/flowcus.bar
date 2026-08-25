@@ -9,11 +9,11 @@ public class AudioDevice {
         self.audioDeviceID = deviceID
     }
 
-    var hasOutput: Bool {
+    var hasInput: Bool {
         get {
             var address:AudioObjectPropertyAddress = AudioObjectPropertyAddress(
                 mSelector:AudioObjectPropertySelector(kAudioDevicePropertyStreamConfiguration),
-                mScope:AudioObjectPropertyScope(kAudioDevicePropertyScopeOutput),
+                mScope:AudioObjectPropertyScope(kAudioDevicePropertyScopeInput),
                 mElement:0)
 
             var propsize:UInt32 = UInt32(MemoryLayout<CFString?>.size);
@@ -107,7 +107,7 @@ public class AudioDeviceFinder {
         var foundDevices: [AudioDevice] = []
         for i in 0..<numDevices {
             let audioDevice = AudioDevice(deviceID:devids[i])
-            if (audioDevice.hasOutput) {
+            if (audioDevice.hasInput) {
                 foundDevices.append(audioDevice)
 
             }
