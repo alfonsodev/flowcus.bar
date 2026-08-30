@@ -1,16 +1,20 @@
 PODS:
   - Aperture (0.2.0)
+  - Swifter (1.5.0)
 
 DEPENDENCIES:
   - Aperture
+  - Swifter (~> 1.5.0)
 
 SPEC REPOS:
-  https://github.com/CocoaPods/Specs.git:
+  trunk:
     - Aperture
+    - Swifter
 
 SPEC CHECKSUMS:
   Aperture: ccc6c1ce5c82b9a96664dc5aafeab914d1d86fc3
+  Swifter: e71dd674404923d7f03ebb03f3f222d1c570bc8e
 
-PODFILE CHECKSUM: 2952d9fdf9e3ed60bb421dfe07ed335e58b1a039
+PODFILE CHECKSUM: 7d3bedb0c4dd90325f016a45088751633b1da6fc
 
-COCOAPODS: 1.10.1
+COCOAPODS: 1.11.3

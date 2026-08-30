@@ -8,5 +8,6 @@ target 'flowcus' do
 
   # Pods for flowcus
   pod 'Aperture'
+  pod 'Swifter', '~> 1.5.0'
 
 end
